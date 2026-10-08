@@ -1,0 +1,531 @@
+import subprocess
+import os
+
+html_content = """<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>One-Pager Ejecutivo - Kessoku Dev</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  @page {
+    size: A4 portrait;
+    margin: 10mm 14mm 10mm 14mm;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #0f172a;
+    line-height: 1.35;
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+  }
+
+  .sheet {
+    page-break-after: always;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .sheet:last-child {
+    page-break-after: avoid;
+  }
+
+  /* Header */
+  .header {
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .brand h1 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+    letter-spacing: -0.03em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .brand h1 span {
+    color: #2563eb;
+  }
+
+  .tagline {
+    font-size: 11px;
+    font-weight: 600;
+    color: #475569;
+    margin-top: 3px;
+  }
+
+  .header-badge {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #1d4ed8;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 9.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .section-title {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: #0f172a;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin: 12px 0 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-left: 3px solid #2563eb;
+    padding-left: 8px;
+  }
+
+  /* Pain Points Grid */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .pain-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 8px 10px;
+  }
+
+  .pain-card h4 {
+    margin: 0 0 3px 0;
+    font-size: 11px;
+    font-weight: 700;
+    color: #b91c1c;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .pain-card p {
+    margin: 0;
+    font-size: 10px;
+    color: #475569;
+    line-height: 1.3;
+  }
+
+  /* Solutions Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10px;
+    margin: 8px 0;
+  }
+
+  th {
+    background: #f1f5f9;
+    color: #0f172a;
+    text-align: left;
+    padding: 6px 8px;
+    font-weight: 700;
+    border-bottom: 1.5px solid #cbd5e1;
+    text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: 0.03em;
+  }
+
+  td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: top;
+  }
+
+  tr:nth-child(even) td {
+    background: #fafafa;
+  }
+
+  .price-highlight {
+    font-weight: 700;
+    color: #0f172a;
+    white-space: nowrap;
+  }
+
+  .mrr-tag {
+    display: inline-block;
+    color: #2563eb;
+    font-weight: 600;
+    font-size: 9px;
+  }
+
+  /* Hook Box */
+  .hook-box {
+    background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
+    border: 1.5px solid #93c5fd;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 12px 0 8px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .hook-text h3 {
+    margin: 0 0 3px 0;
+    font-size: 12.5px;
+    font-weight: 800;
+    color: #1e3a8a;
+  }
+
+  .hook-text p {
+    margin: 0;
+    font-size: 10px;
+    color: #334155;
+    line-height: 1.35;
+  }
+
+  .cta-badge {
+    background: #2563eb;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 11px;
+    text-align: center;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(37,99,235,0.25);
+  }
+
+  .footer-contact {
+    border-top: 1px solid #cbd5e1;
+    padding-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: #475569;
+    font-weight: 500;
+  }
+
+  /* CARA 2 SPECIFIC STYLES */
+  .inst-header {
+    border-bottom: 2px solid #4f46e5;
+  }
+
+  .inst-badge {
+    background: #eef2ff;
+    border-color: #c7d2fe;
+    color: #4338ca;
+  }
+
+  .profile-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 8px 0 12px 0;
+  }
+
+  .profile-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 8px 10px;
+  }
+
+  .profile-card h4 {
+    margin: 0 0 2px 0;
+    font-size: 11px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .profile-card .career {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #4f46e5;
+    margin-bottom: 4px;
+  }
+
+  .profile-card p {
+    margin: 0;
+    font-size: 9.5px;
+    color: #475569;
+    line-height: 1.3;
+  }
+
+  .void-box {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-left: 4px solid #f59e0b;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin: 8px 0 12px 0;
+  }
+
+  .void-box h4 {
+    margin: 0 0 3px 0;
+    color: #92400e;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .void-box p {
+    margin: 0;
+    font-size: 10px;
+    color: #78350f;
+    line-height: 1.3;
+  }
+
+  .petition-list {
+    margin: 8px 0;
+    padding-left: 18px;
+    font-size: 10px;
+    color: #334155;
+  }
+
+  .petition-list li {
+    margin-bottom: 4px;
+  }
+
+  .signatures {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+  }
+
+  .sig-line {
+    border-top: 1px solid #475569;
+    padding-top: 4px;
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .sig-role {
+    font-size: 8.5px;
+    color: #64748b;
+  }
+</style>
+</head>
+<body>
+
+<!-- ========================================== -->
+<!-- CARA 1: PROPUESTA COMERCIAL PyME           -->
+<!-- ========================================== -->
+<div class="sheet">
+  <div>
+    <div class="header">
+      <div class="brand">
+        <h1>KESSOKU <span>DEV</span></h1>
+        <div class="tagline">Ingeniería de Software, Automatización y Datos para PyMEs en Crecimiento</div>
+      </div>
+      <div class="header-badge">Soluciones B2B Zapopan/GDL</div>
+    </div>
+
+    <div class="section-title">¿Tu negocio se siente frenado por alguno de estos problemas?</div>
+    <div class="grid-2">
+      <div class="pain-card">
+        <h4>❌ El Laberinto de Excels</h4>
+        <p>15 a 20 archivos desconectados. Precios desfasados y el pánico constante de que alguien borre una fórmula maestra.</p>
+      </div>
+      <div class="pain-card">
+        <h4>❌ El Embudo Ciego de WhatsApp</h4>
+        <p>Cotizaciones lentas desde celulares personales de vendedores. Prospectos perdidos y nulo seguimiento comercial.</p>
+      </div>
+      <div class="pain-card">
+        <h4>❌ Ceguera de Rentabilidad</h4>
+        <p>Ves entrar dinero al banco pero ignoras qué producto te genera utilidad neta real y cuál te está costando dinero.</p>
+      </div>
+      <div class="pain-card">
+        <h4>❌ Facturación y Cobranza Lenta</h4>
+        <p>Horas invertidas facturando a mano en el SAT (CFDI 4.0), errores de complementos y cartera vencida acumulada.</p>
+      </div>
+    </div>
+
+    <div class="section-title">Soluciones Paquetizadas (Entrega Rápida & Cero Complicaciones)</div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Solución</th>
+          <th style="width: 45%;">¿Qué incluye tu empresa?</th>
+          <th style="width: 15%;">Setup</th>
+          <th style="width: 15%;">Soporte Cloud</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1. Bot Cotizador WhatsApp & CRM</strong></td>
+          <td>Asistente en WhatsApp que emite cotizaciones formales en PDF con logo y lista oficial en &lt;60 seg, registra el lead y agenda cobranza.</td>
+          <td class="price-highlight">$7,500 MXN</td>
+          <td class="mrr-tag">$1,500 / mes</td>
+        </tr>
+        <tr>
+          <td><strong>2. Dashboard de Inteligencia de Datos</strong></td>
+          <td>Migración de hojas de cálculo a base de datos segura. Tablero visual con 4 KPIs en vivo: margen real, rotación, Pareto y flujo.</td>
+          <td class="price-highlight">$9,800 MXN</td>
+          <td class="mrr-tag">$1,800 / mes</td>
+        </tr>
+        <tr>
+          <td><strong>3. Mini-ERP & Facturación SAT CFDI 4.0</strong></td>
+          <td>Web App móvil: lector QR de almacén para entradas/salidas, remisiones con firma en pantalla y timbrado automático de facturas.</td>
+          <td class="price-highlight">$18,500 MXN<br><small style="color:#64748b;">(50/50)</small></td>
+          <td class="mrr-tag">$2,800 / mes</td>
+        </tr>
+        <tr>
+          <td><strong>4. Suite Digital de Exportación B2B</strong></td>
+          <td>Calculadora de cubicaje de tarimas, peso volumétrico, flete estimado, Incoterms 2020 y generación automática de Proforma y Packing List.</td>
+          <td class="price-highlight">$16,000 MXN<br><small style="color:#64748b;">(50/50)</small></td>
+          <td class="mrr-tag">$2,200 / mes</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="hook-box">
+      <div class="hook-text">
+        <h3>🎁 Da el primer paso: Auditoría Digital de 30 Minutos (Sin Costo)</h3>
+        <p>Analizamos tu flujo operativo, detectamos dónde estás perdiendo tiempo y dinero, y te entregamos 2 mejoras de impacto inmediato listas para aplicar, sin compromiso de compra.</p>
+      </div>
+      <div class="cta-badge">
+        Agenda tu Auditoría<br>
+        <span style="font-size: 8.5px; font-weight: normal;">WhatsApp: +52 33 0000 0000</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-contact">
+    <div><strong>Kessoku Dev</strong> — Tecnología e Inteligencia Empresarial</div>
+    <div>📍 Coworking Torre Smart, CUCEA, Zapopan, Jal.</div>
+    <div>✉️ contacto@kessokudev.com | 🌐 kessokudev.com</div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- CARA 2: ENFOQUE INSTITUCIONAL CUCEA        -->
+<!-- ========================================== -->
+<div class="sheet">
+  <div>
+    <div class="header inst-header">
+      <div class="brand">
+        <h1>KESSOKU <span>DEV</span></h1>
+        <div class="tagline">Iniciativa Universitaria de Vinculación y Transferencia Tecnológica</div>
+      </div>
+      <div class="header-badge inst-badge">Ficha de Incubación CEIS / Hospital PyME</div>
+    </div>
+
+    <div class="section-title" style="border-left-color: #4f46e5;">1. Perfil del Equipo & Sinergia Académica</div>
+    <div class="profile-box">
+      <div class="profile-card">
+        <h4>Líder Técnico & Arquitecto de Software</h4>
+        <div class="career">Ingeniería en Negocios / BI & Full Stack</div>
+        <p>Especialista en modelado relacional de datos, desarrollo frontend/backend ágil, integración de webhooks/APIs de facturación SAT y orquestación de flujos de automatización.</p>
+      </div>
+      <div class="profile-card">
+        <h4>Líder Comercial & Operaciones</h4>
+        <div class="career">Lic. en Negocios Internacionales (LINI)</div>
+        <p>Especialista en prospección B2B, negociación estratégica, optimización de cadenas de suministro, logística de exportación y cálculo arancelario/Incoterms 2020.</p>
+      </div>
+    </div>
+
+    <div class="section-title" style="border-left-color: #4f46e5;">2. Propuesta de Valor Institucional: Resolver el "Vacío de Implementación"</div>
+    <div class="void-box">
+      <h4>El Diagnóstico no es suficiente sin Ejecución Técnica</h4>
+      <p>Programas como Hospital PyME e IDITpyme generan diagnósticos extraordinarios. No obstante, al concluir las 5 sesiones gratuitas, la PyME queda desamparada porque CUCEA no cuenta con programadores y el mercado privado cobra presupuestos corporativos ($80,000+ MXN). Kessoku Dev actúa como el brazo tecnológico accesible y formal para materializar esos diagnósticos.</p>
+    </div>
+
+    <table style="margin: 6px 0;">
+      <thead>
+        <tr>
+          <th>Pilar Institucional</th>
+          <th>Compromiso de Kessoku Dev</th>
+          <th>Beneficio para CUCEA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Atención a Egresados</strong></td>
+          <td>Precios preferenciales y paquetes cerrados para empresas derivadas de Hospital PyME e IDITpyme.</td>
+          <td>Cierre del ciclo de consultoría con impacto económico real medible.</td>
+        </tr>
+        <tr>
+          <td><strong>Talleres Abiertos</strong></td>
+          <td>Impartición semestral gratuita del taller: <em>"De Excel a la Automatización Operativa"</em>.</td>
+          <td>Atracción de nuevas PyMEs al campus y fortalecimiento de extensión universitaria.</td>
+        </tr>
+        <tr>
+          <td><strong>Transparencia y Ética</strong></td>
+          <td>Cero prácticas clandestinas. Operación 100% formal bajo lineamientos de la UdeG.</td>
+          <td>Protección institucional y cumplimiento estricto de la LGPDPPSO.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-title" style="border-left-color: #4f46e5;">3. Solicitudes a la Coordinación de CEIS / CIADEyS</div>
+    <ul class="petition-list">
+      <li><strong>Acreditación formal en CUCEA Emprende:</strong> Registro del proyecto para contar con respaldo universitario.</li>
+      <li><strong>Asignación de espacio en Torre Smart:</strong> Uso del Coworking (Piso 2) como centro de atención para diagnósticos presenciales.</li>
+      <li><strong>Mesa de vinculación con Hospital PyME:</strong> Acordar protocolo ético de referencia para empresas con necesidad de software.</li>
+    </ul>
+
+    <div class="signatures">
+      <div>
+        <div class="sig-line">Líder Técnico — Kessoku Dev</div>
+        <div class="sig-role">Ingeniería en Negocios / BI — CUCEA</div>
+      </div>
+      <div>
+        <div class="sig-line">Líder Comercial — Kessoku Dev</div>
+        <div class="sig-role">Lic. en Negocios Internacionales — CUCEA</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-contact" style="border-color: #c7d2fe;">
+    <div><strong>CUCEA Smart Campus</strong> — Zapopan, Jalisco</div>
+    <div>Centro Universitario de Ciencias Económico Administrativas | UdeG</div>
+    <div>Ciclo 2026-B</div>
+  </div>
+</div>
+
+</body>
+</html>
+"""
+
+html_path = "/Users/angelzaragoza/Desktop/KessokuDev/ONE_PAGER_KESSOKU_DEV.html"
+pdf_path = "/Users/angelzaragoza/Desktop/KessokuDev/ONE_PAGER_KESSOKU_DEV.pdf"
+
+with open(html_path, "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print(f"HTML One-Pager escrito en {html_path}")
+
+cmd = [
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "--headless",
+    "--disable-gpu",
+    "--no-pdf-header-footer",
+    f"--print-to-pdf={pdf_path}",
+    f"file://{html_path}"
+]
+
+res = subprocess.run(cmd, capture_output=True, text=True)
+if os.path.exists(pdf_path) and os.path.getsize(pdf_path) > 0:
+    print(f"PDF One-Pager generado exitosamente en {pdf_path} ({os.path.getsize(pdf_path)} bytes)")
+else:
+    print(f"Error generando PDF One-Pager: {res.stderr}")

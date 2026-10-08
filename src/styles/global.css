@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-navy: #080d1a;
+    --bg-surface: #0e1726;
+    --border-subtle: #1e293b;
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent-cobalt: #1d4ed8;
+    --accent-ochre: #d97706;
+    --accent-phosphor: #10b981;
+  }
+
+  body {
+    background-color: var(--bg-navy);
+    color: var(--text-primary);
+    font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Chivo', sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  .font-mono-tech {
+    font-family: 'Azeret Mono', monospace;
+  }
+}

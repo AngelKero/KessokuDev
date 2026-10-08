@@ -1,0 +1,91 @@
+{
+  "title": "Dirección Estética / Visual World - Kessoku Dev",
+  "question": "El dado asignó 'Customs Manifest & Global Waybill' (Manifiesto de Aduana y Carga Marítima). ¿Mantener la dirección asignada, elegir una alternativa o re-roll?",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "El Manifiesto de Aduana & Waybill Global (LINI / Tech)",
+      "kicker": "THE ROLL",
+      "lineage": "Manifiestos marítimos, timbres de aduana de exportación y cuadernos de carga de comercio exterior",
+      "thesis": "El desarrollo web tratado como un despacho logístico formal de exportación: paquetes estandarizados y sellados, cero aranceles operativos por desorden, inspección técnica en vivo y salida inmediata a mercados globales.",
+      "palette": ["#0b1320", "#f8f9fa", "#1d4ed8", "#c2410c"],
+      "materials": ["papel manila/archivo técnico", "tinta cobalto aduanal", "timbres de inspección carmín"],
+      "viewport": "Folio de despacho aduanal con sello de inspección técnica en vivo (60fps / WCAG AA / 20 min) y selector de flete digital.",
+      "risk": "Puede sentirse austero o hiper-administrativo si las micro-interacciones no demuestran fluidez de 60fps.",
+      "raised": [
+        {
+          "from": "signals-instruments-night-flight-six-pack",
+          "raise": "Incorpora seis diales de telemetría e inspección en vivo que auditan métricas de rendimiento y accesibilidad antes de zarpar."
+        },
+        {
+          "from": "paper-folds-pleats-deployable-miura-orbit-sheet",
+          "raise": "Las especificaciones de los paquetes se despliegan en acordeón estructural sin salto de página ni desajuste visual."
+        },
+        {
+          "from": "digital-design-canon-greiman-hybrid-collage",
+          "raise": "Contraste de escala audaz: timbres y sellos de aprobación a gran escala sobre micro-especificaciones de tabla milimétrica."
+        }
+      ]
+    },
+    {
+      "id": "model-pick",
+      "label": "El Balance Auditado & Folio Financiero",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Folios contables corporativos, balances auditados de firmas financieras y cuadernos de balance de gran formato",
+      "thesis": "El desarrollo web presentado como una inversión auditada con retorno matemático exacto: cada línea de código es un asiento contable validado y cada peso invertido tiene métrica de retorno clara.",
+      "palette": ["#f5f2eb", "#111827", "#991b1b", "#1e3a8a"],
+      "materials": ["papel bond marfil pesado", "tinta de imprenta negra", "sellos de folio contable"],
+      "viewport": "Folio editorial a dos páginas con balance de costos vs pérdidas por informalidad y diagnóstico de rentabilidad web.",
+      "risk": "La dirección más familiar para negocios; riesgo de parecer despacho contable si la interacción digital no está al frente."
+    },
+    {
+      "id": "challenger-six-pack",
+      "label": "Panel de Instrumentos & Telemetría Nocturna",
+      "verdict": "competitive",
+      "lineage": "Aeronautical instrument six-pack",
+      "thesis": "La plataforma como una cabina de control donde seis instrumentos calibrados verifican la integridad total del software en tiempo real.",
+      "palette": ["#0b0f14", "#e2e8f0", "#10b981", "#f59e0b"],
+      "materials": ["panel negro mate", "marcas luminiscentes", "indicadores de aguja amortiguados"],
+      "viewport": "Consola de aviónica oscura con seis instrumentos de telemetría activa en tiempo real.",
+      "case": "Fusión técnica impecable para demostrar los 60fps y tiempos de carga; pierde en calidez comercial para el comerciante tradicional.",
+      "risk": "Lectura hiper-técnica que puede intimidar al dueño de PyME que sólo busca digitalizar su catálogo."
+    },
+    {
+      "id": "challenger-miura",
+      "label": "Hoja de Pliegue Miura (Aeroespacial)",
+      "verdict": "declined",
+      "lineage": "Aerospace tessellated deployment",
+      "palette": ["#fafafa", "#18181b", "#d97706"],
+      "materials": ["pliegues de origami técnico", "retícula de paralelogramos"],
+      "case": "Metáfora geométrica abstracta que no conecta con el dueño de PyME tradicional de Guadalajara.",
+      "kept": "Despliegue estructural en acordeón de los paquetes sin saltos de layout."
+    },
+    {
+      "id": "challenger-greiman",
+      "label": "Collage Híbrido Greiman",
+      "verdict": "declined",
+      "lineage": "Postmodern hybrid typography",
+      "palette": ["#0d9488", "#db2777", "#ffffff"],
+      "materials": ["textura de bitmap tramado", "tipografía en rampas angulares"],
+      "case": "Estética de escuela de arte posmoderna que resta sobriedad institucional a la vinculación con CUCEA.",
+      "kept": "Contraste tipográfico radical entre sellos monumentales y micro-especificaciones de tabla."
+    }
+  ],
+  "reroll": {
+    "registers": ["safer", "bolder"]
+  },
+  "buildPath": {
+    "value": "code",
+    "toggle": false
+  },
+  "canon": true,
+  "canonCard": {
+    "label": "El Estándar de la Categoría (Tech Agency Clean)",
+    "thesis": "El estándar predecible de las agencias de software y diseño web: hero oscuro centrado, tarjetas flotantes simétricas y acentos cian/azul.",
+    "palette": ["#09090b", "#f4f4f5", "#2563eb"],
+    "materials": ["grid oscuro minimalista", "cards flotantes con gradiente"],
+    "viewport": "Hero centrado 'Creamos experiencias digitales', 3 tarjetas de servicios y botón a WhatsApp.",
+    "risk": "Indistinguible del resto de freelancers y agencias de la ZMG."
+  },
+  "steer": true
+}
