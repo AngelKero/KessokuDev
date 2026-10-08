@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import FounderPalette from '../components/FounderPalette.astro';
 
 interface Props {
   title?: string;
@@ -29,6 +30,7 @@ const {
   </head>
   <body class="min-h-screen bg-[#080d1a] text-[#f8fafc] antialiased selection:bg-[#1d4ed8] selection:text-white">
     <slot />
+    <FounderPalette />
 
     <!-- Lenis & GSAP Smooth Performance Initialization -->
     <script>

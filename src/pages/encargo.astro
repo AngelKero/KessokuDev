@@ -1,0 +1,443 @@
+---
+// src/pages/encargo.astro - Hoja de Encargo B2B de 1 Página (Imprimible & Exportable a PDF)
+import '../styles/global.css';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/') 
+  ? import.meta.env.BASE_URL 
+  : `${import.meta.env.BASE_URL}/`;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href={`${baseUrl}favicon.svg`} />
+    <title>Hoja de Encargo B2B // Kessoku Dev - Contrato de 1 Página</title>
+    
+    <!-- Fuentes Técnicas: Chivo + Public Sans + Azeret Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,400;0,600;0,700;1,400&family=Chivo:ital,wght@0,700;0,800;0,900;1,700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+    <style>
+      /* Estilos generales para vista de pantalla */
+      :root {
+        --font-mono: 'Azeret Mono', monospace;
+        --font-display: 'Chivo', sans-serif;
+        --font-body: 'Public Sans', sans-serif;
+      }
+
+      body {
+        font-family: var(--font-body);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .font-mono-tech {
+        font-family: var(--font-mono);
+      }
+
+      .font-display-title {
+        font-family: var(--font-display);
+      }
+
+      /* Hoja de papel física Letter */
+      .sheet-paper {
+        width: 215.9mm;
+        min-height: 279.4mm;
+        box-sizing: border-box;
+      }
+
+      /* Reglas de impresión estrictas para 1 sola página Letter */
+      @page {
+        size: letter portrait;
+        margin: 5mm 7mm;
+      }
+
+      @media print {
+        body {
+          background-color: #ffffff !important;
+          color: #0f172a !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+
+        .no-print {
+          display: none !important;
+        }
+
+        .sheet-paper {
+          width: 100% !important;
+          min-height: auto !important;
+          max-height: 268mm !important;
+          border: 1.5px solid #0f172a !important;
+          box-shadow: none !important;
+          margin: 0 !important;
+          padding: 6mm 8mm !important;
+          page-break-inside: avoid !important;
+          break-inside: avoid !important;
+        }
+
+        .print-tight {
+          padding-top: 2px !important;
+          padding-bottom: 2px !important;
+        }
+
+        /* Fuerza contraste en impresión */
+        .text-slate-900, .text-slate-800, .text-slate-700 {
+          color: #000000 !important;
+        }
+        
+        .border-slate-300, .border-slate-400 {
+          border-color: #1e293b !important;
+        }
+
+        .bg-slate-50, .bg-slate-100 {
+          background-color: #f8fafc !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-[#050914] text-slate-800 antialiased min-h-screen py-6 px-2 sm:px-4 flex flex-col items-center justify-start selection:bg-[#1d4ed8] selection:text-white">
+
+    <!-- BARRA SUPERIOR DE ACCIÓN (SÓLO PANTALLA) -->
+    <header class="no-print w-full max-w-[215.9mm] mb-5 flex flex-wrap items-center justify-between gap-3 bg-[#0c1427] border border-[#1e293b] p-3.5 rounded-xl shadow-xl text-xs font-mono-tech">
+      <div class="flex items-center space-x-3">
+        <a 
+          href={baseUrl} 
+          class="flex items-center space-x-1.5 text-[#93c5fd] hover:text-white hover:underline transition-colors"
+        >
+          <span>←</span>
+          <span>Volver a Kessoku Dev</span>
+        </a>
+        <span class="text-[#334155]">•</span>
+        <span class="text-[#f59e0b] font-bold">HOJA DE ENCARGO B2B // 1 PÁGINA</span>
+      </div>
+
+      <div class="flex items-center space-x-2">
+        <button 
+          id="toggle-date-btn"
+          type="button"
+          class="rounded border border-[#334155] bg-[#1e293b] px-3 py-1.5 text-white hover:bg-[#2e3e57] transition-colors"
+          title="Actualizar fecha a hoy"
+        >
+          📅 Fecha Hoy
+        </button>
+        <button 
+          id="print-action-btn"
+          type="button"
+          class="inline-flex items-center space-x-1.5 rounded bg-[#d97706] px-4 py-1.5 font-bold text-[#080d1a] hover:bg-[#b45309] hover:text-white transition-all shadow-md active:scale-95"
+        >
+          <span>🖨️</span>
+          <span>Imprimir / Guardar PDF</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- HOJA FÍSICA / DOCUMENTO FORMAL VINCULANTE (1 PÁGINA CARTA) -->
+    <main class="sheet-paper bg-white rounded-sm shadow-2xl p-7 text-slate-900 border border-slate-300 relative flex flex-col justify-between text-[11px] leading-tight">
+      
+      <!-- 1. ENCABEZADO INSTITUCIONAL -->
+      <section class="border-b-2 border-slate-900 pb-2.5">
+        <div class="flex items-start justify-between">
+          <div class="space-y-0.5">
+            <div class="flex items-center space-x-2">
+              <span class="inline-flex items-center justify-center bg-slate-900 text-white font-mono-tech font-bold text-xs px-2 py-0.5 rounded-xs">
+                KD
+              </span>
+              <h1 class="text-base font-extrabold tracking-tight font-display-title text-slate-950">
+                KESSOKU DEV // HOJA DE ENCARGO B2B
+              </h1>
+            </div>
+            <p class="text-[10px] text-slate-700 font-semibold uppercase tracking-wider">
+              Despacho de Software Productizado & Soluciones Web de Alta Velocidad (60 FPS)
+            </p>
+            <p class="text-[9.5px] text-slate-600 font-mono-tech">
+              Iniciativa de Vinculación Tecnológica • Torre Smart Campus (Piso 2) • CUCEA Universidad de Guadalajara
+            </p>
+          </div>
+
+          <!-- Metadatos de Folio y Fechas -->
+          <div class="text-right font-mono-tech text-[10px] space-y-1 bg-slate-50 border border-slate-300 p-2 rounded-xs">
+            <div>
+              <span class="text-slate-500">FOLIO:</span>
+              <span id="doc-folio" class="font-bold text-slate-950 text-xs">KD-2026-0419</span>
+            </div>
+            <div>
+              <span class="text-slate-500">FECHA:</span>
+              <span id="doc-date" class="font-semibold text-slate-900">08 / OCT / 2026</span>
+            </div>
+            <div>
+              <span class="text-slate-500">ENTREGA:</span>
+              <span class="font-bold text-amber-700">5 DÍAS HÁBILES</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. DATOS DE LA EMPRESA CLIENTE (CAMPOS EDITABLES O RELLENABLES A MANO) -->
+      <section class="my-2 border border-slate-300 rounded-xs p-2.5 bg-slate-50/50">
+        <div class="text-[10px] font-bold font-mono-tech text-slate-900 uppercase border-b border-slate-300 pb-1 mb-2 flex justify-between">
+          <span>01. DATOS FISCALES / COMERCIALES DEL CONTRATANTE</span>
+          <span class="text-slate-500 font-normal">Requisitos de Facturación y Contacto</span>
+        </div>
+        <div class="grid grid-cols-3 gap-x-4 gap-y-2 text-[10.5px]">
+          <div>
+            <span class="block text-[9px] font-semibold text-slate-500 uppercase">Empresa / Razón Social:</span>
+            <span class="block font-medium border-b border-slate-400 py-0.5 min-h-[16px]" contenteditable="true">___________________________________</span>
+          </div>
+          <div>
+            <span class="block text-[9px] font-semibold text-slate-500 uppercase">Representante / Titular:</span>
+            <span class="block font-medium border-b border-slate-400 py-0.5 min-h-[16px]" contenteditable="true">___________________________________</span>
+          </div>
+          <div>
+            <span class="block text-[9px] font-semibold text-slate-500 uppercase">RFC / CURP (Facturación):</span>
+            <span class="block font-medium border-b border-slate-400 py-0.5 min-h-[16px]" contenteditable="true">___________________________________</span>
+          </div>
+          <div>
+            <span class="block text-[9px] font-semibold text-slate-500 uppercase">Teléfono / WhatsApp Directo:</span>
+            <span class="block font-medium border-b border-slate-400 py-0.5 min-h-[16px]" contenteditable="true">___________________________________</span>
+          </div>
+          <div>
+            <span class="block text-[9px] font-semibold text-slate-500 uppercase">Correo Electrónico:</span>
+            <span class="block font-medium border-b border-slate-400 py-0.5 min-h-[16px]" contenteditable="true">___________________________________</span>
+          </div>
+          <div>
+            <span class="block text-[9px] font-semibold text-slate-500 uppercase">Giro Comercial / Ubicación:</span>
+            <span class="block font-medium border-b border-slate-400 py-0.5 min-h-[16px]" contenteditable="true">Zapopan / Guadalajara, Jal.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. DESGLOSE DE ALCANCE Y PAQUETES PRODUCTIZADOS -->
+      <section class="my-2">
+        <div class="text-[10px] font-bold font-mono-tech text-slate-900 uppercase border-b border-slate-300 pb-1 mb-2 flex justify-between">
+          <span>02. SELECCIÓN DE PAQUETE CERRADO & MÓDULOS DE INTEGRACIÓN</span>
+          <span class="text-slate-500 font-normal">Marcar con [X] el paquete seleccionado</span>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2.5">
+          <!-- PAQUETE 01 -->
+          <div class="border border-slate-300 rounded-xs p-2 bg-white relative flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between pb-1 border-b border-slate-200">
+                <label class="flex items-center space-x-1.5 cursor-pointer font-bold text-[10.5px]">
+                  <input type="checkbox" name="paquete" value="p01" class="h-3.5 w-3.5 accent-slate-900" />
+                  <span>P01 // APERTURA B2B</span>
+                </label>
+                <span class="text-[10px] font-bold font-mono-tech text-slate-900">$7,500</span>
+              </div>
+              <p class="text-[9px] text-slate-600 mt-1 leading-tight">
+                Presencia comercial ágil para PyMEs de servicios o consultoría.
+              </p>
+              <ul class="text-[9px] text-slate-700 mt-1.5 space-y-0.5 list-disc pl-3">
+                <li>Landing page en Astro 5 (60 FPS)</li>
+                <li>WhatsApp directo + SEO Local Zapopan</li>
+                <li>Dominio y hosting SSL (1 año inc.)</li>
+                <li>Mantenimiento: $490 MXN/mes</li>
+              </ul>
+            </div>
+            <div class="mt-2 pt-1 border-t border-slate-100 text-[8.5px] font-mono-tech text-slate-500 text-center">
+              ENTREGA: 5 DÍAS HÁBILES
+            </div>
+          </div>
+
+          <!-- PAQUETE 02 (RECOMENDADO) -->
+          <div class="border-2 border-slate-900 rounded-xs p-2 bg-slate-50 relative flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between pb-1 border-b border-slate-300">
+                <label class="flex items-center space-x-1.5 cursor-pointer font-bold text-[10.5px]">
+                  <input type="checkbox" name="paquete" value="p02" class="h-3.5 w-3.5 accent-slate-900" checked />
+                  <span>P02 // DIGITALIZACIÓN</span>
+                </label>
+                <span class="text-[10px] font-bold font-mono-tech text-slate-950">$12,500</span>
+              </div>
+              <p class="text-[9px] text-slate-600 mt-1 leading-tight">
+                Para comercializadoras, talleres y distribución con inventario variable.
+              </p>
+              <ul class="text-[9px] text-slate-800 mt-1.5 space-y-0.5 list-disc pl-3 font-medium">
+                <li>Todo lo incluido en P01</li>
+                <li><strong>Catálogo editable con Google Sheets</strong></li>
+                <li>Generador de cotización por WhatsApp</li>
+                <li>Mantenimiento: $890 MXN/mes</li>
+              </ul>
+            </div>
+            <div class="mt-2 pt-1 border-t border-slate-300 text-[8.5px] font-mono-tech text-slate-900 font-bold text-center">
+              ★ RECOMENDADO // 5 DÍAS HÁBILES
+            </div>
+          </div>
+
+          <!-- PAQUETE 03 -->
+          <div class="border border-slate-300 rounded-xs p-2 bg-white relative flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between pb-1 border-b border-slate-200">
+                <label class="flex items-center space-x-1.5 cursor-pointer font-bold text-[10.5px]">
+                  <input type="checkbox" name="paquete" value="p03" class="h-3.5 w-3.5 accent-slate-900" />
+                  <span>P03 // OPERACIÓN Y CITAS</span>
+                </label>
+                <span class="text-[10px] font-bold font-mono-tech text-slate-900">$18,500</span>
+              </div>
+              <p class="text-[9px] text-slate-600 mt-1 leading-tight">
+                Para clínicas, despachos o empresas que cobran y agendan en línea.
+              </p>
+              <ul class="text-[9px] text-slate-700 mt-1.5 space-y-0.5 list-disc pl-3">
+                <li>Todo lo incluido en P02</li>
+                <li>Módulo automatizado de citas y calendario</li>
+                <li>Pasarela de cobro integrada (Stripe/Clip)</li>
+                <li>Mantenimiento: $1,290 MXN/mes</li>
+              </ul>
+            </div>
+            <div class="mt-2 pt-1 border-t border-slate-100 text-[8.5px] font-mono-tech text-slate-500 text-center">
+              ENTREGA: 5 DÍAS HÁBILES
+            </div>
+          </div>
+        </div>
+
+        <!-- MÓDULOS ADD-ON ESTANDARIZADOS -->
+        <div class="mt-2 border border-slate-300 p-2 rounded-xs bg-white text-[9.5px]">
+          <span class="font-bold font-mono-tech text-slate-900 block mb-1">ADD-ONS Y EXPANSIONES DEL CATÁLOGO (OPCIONALES):</span>
+          <div class="grid grid-cols-4 gap-2">
+            <label class="flex items-center space-x-1 cursor-pointer">
+              <input type="checkbox" class="h-3 w-3 accent-slate-900" />
+              <span>Sincronización Sheets Multi (+ $2,500)</span>
+            </label>
+            <label class="flex items-center space-x-1 cursor-pointer">
+              <input type="checkbox" class="h-3 w-3 accent-slate-900" />
+              <span>Módulo Citas y Agenda (+ $3,500)</span>
+            </label>
+            <label class="flex items-center space-x-1 cursor-pointer">
+              <input type="checkbox" class="h-3 w-3 accent-slate-900" />
+              <span>Pasarela Stripe / Clip (+ $4,000)</span>
+            </label>
+            <label class="flex items-center space-x-1 cursor-pointer">
+              <input type="checkbox" class="h-3 w-3 accent-slate-900" />
+              <span>Dominio Adicional / Correos (+ $1,200)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- CONDICIONES DE LIQUIDACIÓN Y ANTICIPO -->
+        <div class="mt-2 grid grid-cols-3 gap-2 font-mono-tech text-[10.5px] bg-slate-100 border border-slate-300 p-2 rounded-xs">
+          <div>
+            <span class="block text-[8.5px] text-slate-500 uppercase">Inversión Total Proyecto:</span>
+            <span class="font-bold text-slate-950 text-xs" contenteditable="true">$ 12,500.00 MXN</span>
+          </div>
+          <div>
+            <span class="block text-[8.5px] text-slate-500 uppercase font-bold text-amber-800">Anticipo 50% (Para Iniciar):</span>
+            <span class="font-bold text-amber-900 text-xs" contenteditable="true">$ 6,250.00 MXN</span>
+          </div>
+          <div>
+            <span class="block text-[8.5px] text-slate-500 uppercase">Saldo 50% (Contra Entrega):</span>
+            <span class="font-bold text-slate-950 text-xs" contenteditable="true">$ 6,250.00 MXN</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. CLÁUSULAS CONTRACTUALES Y TÉRMINOS COMERCIALES -->
+      <section class="my-1.5 border border-slate-300 rounded-xs p-2.5 bg-slate-50/30 text-[9px] leading-snug">
+        <div class="text-[9.5px] font-bold font-mono-tech text-slate-900 uppercase border-b border-slate-300 pb-1 mb-1.5 flex justify-between">
+          <span>03. CONDICIONES OPERATIVAS Y CLÁUSULAS VINCULANTES</span>
+          <span class="text-slate-500 font-normal">Modelo Productizado Anti-Dispersión</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-slate-700">
+          <div>
+            <p><strong>1. ALCANCE CERRADO Y CATÁLOGO:</strong> El presente encargo comprende estrictamente las especificaciones del paquete seleccionado. Kessoku Dev no ejecuta desarrollos a medida fuera de catálogo bajo este contrato, garantizando la velocidad y estabilidad prometida.</p>
+          </div>
+          <div>
+            <p><strong>2. GARANTÍA DE ENTREGA EN 5 DÍAS:</strong> Los 5 días hábiles se computan a partir de la confirmación del anticipo del 50% y la entrega de los materiales base (logotipo, datos de contacto y catálogo inicial). Ante demora imputable a Kessoku Dev, se otorgará 1 mes de mantenimiento sin costo.</p>
+          </div>
+          <div>
+            <p><strong>3. POLÍTICA DE PAGO Y FACTURACIÓN:</strong> 50% de anticipo para asignación de ingeniería e inicio de labores; 50% restante a la entrega y liberación técnica. Si requiere factura con IVA desglosado, notificar antes de la transferencia.</p>
+          </div>
+          <div>
+            <p><strong>4. DATOS PARA TRANSFERENCIA SPEI:</strong> Banco: <strong>BBVA México</strong> • Beneficiario: <strong>Kessoku Dev / Representación CUCEA</strong> • CLABE: <strong>0123 2001 5489 7412 36</strong> • Referencia: Número de Folio.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. BLOQUE DE FORMALIZACIÓN Y FIRMAS DUALES -->
+      <section class="mt-2 border-t-2 border-slate-900 pt-2.5">
+        <p class="text-[8.5px] text-slate-500 text-center mb-4 font-mono-tech uppercase">
+          Enteradas las partes del alcance, tiempos y montos, firman de conformidad en dos ejemplares el día de su emisión:
+        </p>
+
+        <div class="grid grid-cols-2 gap-8 px-6">
+          <!-- Firma Cliente -->
+          <div class="text-center space-y-1">
+            <div class="border-b border-slate-900 h-10 w-full mb-1"></div>
+            <p class="font-bold text-[10px] text-slate-950 uppercase">POR EL CLIENTE / CONTRATANTE</p>
+            <p class="text-[8.5px] text-slate-600 font-mono-tech">Nombre, Firma y Sello de la Empresa</p>
+          </div>
+
+          <!-- Firma Kessoku Dev -->
+          <div class="text-center space-y-1">
+            <div class="border-b border-slate-900 h-10 w-full mb-1 flex items-end justify-center pb-1">
+              <span class="font-mono-tech text-[9px] text-slate-400 font-semibold">[ RÚBRICA Y SELLO KESSOKU DEV ]</span>
+            </div>
+            <p class="font-bold text-[10px] text-slate-950 uppercase">POR KESSOKU DEV (VINCULACIÓN CUCEA)</p>
+            <p class="text-[8.5px] text-slate-600 font-mono-tech">Representante Técnico / Comercial Autorizado</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. PIE DE PÁGINA FORMAL -->
+      <footer class="mt-2 pt-1 border-t border-slate-200 text-center text-[8px] font-mono-tech text-slate-500 flex justify-between items-center">
+        <span>KESSOKU DEV • PRODUCTIZED SOFTWARE FOR BUSINESS</span>
+        <span>TORRE SMART CAMPUS (PISO 2) • CUCEA UDEG</span>
+        <span>DOCUMENTO CONTRACTUAL // VÁLIDO PARA ENTREGA EN 5 DÍAS</span>
+      </footer>
+
+    </main>
+
+    <!-- SCRIPT DE INTERACTIVIDAD & IMPRESIÓN -->
+    <script>
+      function initOrderSheet() {
+        // Disparador de impresión nativo
+        const printBtn = document.getElementById('print-action-btn');
+        printBtn?.addEventListener('click', () => {
+          window.print();
+        });
+
+        // Actualizar fecha automáticamente
+        const dateBtn = document.getElementById('toggle-date-btn');
+        const dateSpan = document.getElementById('doc-date');
+        const folioSpan = document.getElementById('doc-folio');
+
+        function setTodayDate() {
+          const now = new Date();
+          const months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
+          const day = String(now.getDate()).padStart(2, '0');
+          const month = months[now.getMonth()];
+          const year = now.getFullYear();
+          if (dateSpan) {
+            dateSpan.textContent = `${day} / ${month} / ${year}`;
+          }
+          if (folioSpan) {
+            const randomCode = Math.floor(1000 + Math.random() * 9000);
+            folioSpan.textContent = `KD-${year}-${randomCode}`;
+          }
+        }
+
+        dateBtn?.addEventListener('click', setTodayDate);
+
+        // Control para selección exclusiva de paquetes principales
+        const packageCheckboxes = document.querySelectorAll('input[name="paquete"]');
+        packageCheckboxes.forEach((checkbox) => {
+          checkbox.addEventListener('change', (e) => {
+            const target = e.target as HTMLInputElement;
+            if (target.checked) {
+              packageCheckboxes.forEach((cb) => {
+                if (cb !== target) (cb as HTMLInputElement).checked = false;
+              });
+            }
+          });
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', initOrderSheet);
+      document.addEventListener('astro:page-load', initOrderSheet);
+    </script>
+  </body>
+</html>

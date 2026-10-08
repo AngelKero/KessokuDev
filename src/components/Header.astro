@@ -27,7 +27,7 @@
   <!-- Main Navigation Bar -->
   <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
     <a href="#" class="group flex items-center space-x-3 text-decoration-none">
-      <div class="flex h-10 w-10 items-center justify-center rounded border border-[#1d4ed8] bg-[#0b1320] font-mono-tech font-bold text-[#f8fafc] shadow-inner transition-transform group-hover:scale-105">
+      <div id="brand-badge-trigger" class="flex h-10 w-10 items-center justify-center rounded border border-[#1d4ed8] bg-[#0b1320] font-mono-tech font-bold text-[#f8fafc] shadow-inner transition-transform group-hover:scale-105 active:scale-95 cursor-pointer">
         <span class="text-xs text-[#d97706]">KD</span>
       </div>
       <div>
@@ -70,3 +70,34 @@
     </div>
   </div>
 </header>
+
+<script>
+  // Gesto táctil secreto: 3 toques rápidos (< 600ms) en el badge KD abren la Consola de Fundador
+  function initHeaderTrigger() {
+    const badge = document.getElementById('brand-badge-trigger');
+    if (!badge) return;
+
+    let tapCount = 0;
+    let lastTapTime = 0;
+
+    badge.addEventListener('click', (e) => {
+      const now = Date.now();
+      if (now - lastTapTime < 600) {
+        tapCount++;
+      } else {
+        tapCount = 1;
+      }
+      lastTapTime = now;
+
+      if (tapCount >= 3) {
+        e.preventDefault();
+        e.stopPropagation();
+        tapCount = 0;
+        window.dispatchEvent(new CustomEvent('open-founder-palette'));
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initHeaderTrigger);
+  document.addEventListener('astro:page-load', initHeaderTrigger);
+</script>
