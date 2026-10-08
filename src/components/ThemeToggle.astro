@@ -1,0 +1,105 @@
+---
+// ThemeToggle.astro - Conmutador Táctil de Tema con View Transitions Circular Ripple (OVERDRIVE)
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  class="group relative flex h-9 w-9 items-center justify-center rounded-lg border border-slate-300 bg-white/90 text-slate-700 shadow-sm backdrop-blur-sm transition-all hover:border-[#1d4ed8] hover:text-[#1d4ed8] hover:shadow-md active:scale-95 dark:border-[#1e293b] dark:bg-[#0b1320] dark:text-[#94a3b8] dark:hover:border-[#3b82f6] dark:hover:text-[#60a5fa] cursor-pointer"
+  aria-label="Alternar entre modo claro y modo oscuro"
+  title="Alternar modo claro / modo oscuro"
+>
+  <!-- Icono Sol (se muestra en modo oscuro para volver a claro) -->
+  <svg
+    id="theme-icon-sun"
+    class="hidden h-4 w-4 transform transition-transform duration-300 group-hover:rotate-45 dark:block text-[#f59e0b]"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    stroke-width="2"
+  >
+    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+  </svg>
+
+  <!-- Icono Luna (se muestra en modo claro para pasar a oscuro) -->
+  <svg
+    id="theme-icon-moon"
+    class="block h-4 w-4 transform transition-transform duration-300 group-hover:-rotate-12 dark:hidden text-[#1d4ed8]"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    stroke-width="2"
+  >
+    <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+  </svg>
+</button>
+
+<script>
+  function setupThemeToggle() {
+    const toggleBtn = document.getElementById('theme-toggle');
+    if (!toggleBtn || toggleBtn.dataset.init === 'true') return;
+    toggleBtn.dataset.init = 'true';
+
+    toggleBtn.addEventListener('click', (event) => {
+      const isDark = document.documentElement.classList.contains('dark');
+      const nextTheme = isDark ? 'light' : 'dark';
+
+      // OVERDRIVE: View Transitions con onda circular radial expansiva
+      const hasViewTransition = typeof (document as any).startViewTransition === 'function';
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (hasViewTransition && !prefersReducedMotion) {
+        const rect = toggleBtn.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+        const endRadius = Math.hypot(
+          Math.max(x, window.innerWidth - x),
+          Math.max(y, window.innerHeight - y)
+        );
+
+        const transition = (document as any).startViewTransition(() => {
+          if (nextTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+          localStorage.setItem('kd-theme', nextTheme);
+        });
+
+        transition.ready.then(() => {
+          const clipPath = [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${endRadius}px at ${x}px ${y}px)`
+          ];
+          document.documentElement.animate(
+            {
+              clipPath: nextTheme === 'dark' ? clipPath : [...clipPath].reverse()
+            },
+            {
+              duration: 420,
+              easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+              pseudoElement: nextTheme === 'dark' ? '::view-transition-new(root)' : '::view-transition-old(root)'
+            }
+          );
+        });
+      } else {
+        // Fallback estándar 60fps
+        if (nextTheme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+        localStorage.setItem('kd-theme', nextTheme);
+      }
+
+      window.dispatchEvent(new CustomEvent('kd-theme-changed', { detail: { theme: nextTheme } }));
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupThemeToggle);
+  } else {
+    setupThemeToggle();
+  }
+  document.addEventListener('astro:page-load', setupThemeToggle);
+</script>

@@ -1,26 +1,26 @@
 ---
-// AuditSection.astro - Formulario Interactivo de Despacho y Timbrado de Auditoría $0
+// AuditSection.astro - Formulario Interactivo de Despacho y Timbrado de Auditoría $0 (Modo Claro + Modo Oscuro)
 ---
 
-<section id="auditoria" class="relative border-b border-[#1e293b] bg-[#080d1a] py-20">
+<section id="auditoria" class="relative border-b border-slate-200 bg-slate-50 py-20 text-slate-900 transition-colors duration-200 dark:border-[#1e293b] dark:bg-[#080d1a] dark:text-[#f8fafc]">
   <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
     
     <!-- Outer Waybill Sheet Border -->
-    <div class="relative rounded-xl border-2 border-[#1d4ed8] bg-[#090e1a] p-6 sm:p-10 shadow-2xl">
+    <div class="relative rounded-2xl border-2 border-blue-600 bg-white p-6 sm:p-10 shadow-2xl transition-colors duration-200 dark:border-[#1d4ed8] dark:bg-[#090e1a]">
       
       <!-- Top Perforated Receipt Header -->
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b-2 border-dashed border-[#1e293b] pb-6 font-mono-tech gap-4">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b-2 border-dashed border-slate-200 pb-6 font-mono-tech gap-4 dark:border-[#1e293b]">
         <div>
-          <span class="text-xs text-[#d97706] font-bold">DIAGNÓSTICO DIGITAL SIN COSTO</span>
-          <h2 class="text-2xl sm:text-3xl font-black text-white uppercase font-display">
+          <span class="text-xs text-amber-700 font-bold dark:text-[#d97706]">DIAGNÓSTICO DIGITAL SIN COSTO</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-950 uppercase font-display dark:text-white">
             Solicitar Diagnóstico Web $0
           </h2>
-          <p class="text-xs sm:text-sm text-[#94a3b8] mt-1.5">
+          <p class="text-xs sm:text-sm text-slate-600 mt-1.5 dark:text-[#94a3b8]">
             Evaluamos la presencia digital de tu negocio, detectamos fugas de clientes y te entregamos un plan de acción en 15 minutos (presencial en CUCEA o por videollamada).
           </p>
         </div>
 
-        <div class="rounded border border-[#10b981]/50 bg-[#10b981]/10 px-3.5 py-1.5 text-xs text-[#10b981] font-bold whitespace-nowrap">
+        <div class="rounded border border-emerald-300 bg-emerald-50 px-3.5 py-1.5 text-xs text-emerald-800 font-bold whitespace-nowrap dark:border-[#10b981]/50 dark:bg-[#10b981]/10 dark:text-[#10b981]">
           CUPO SEMANAL: 4 PYMES
         </div>
       </div>
@@ -32,7 +32,7 @@
           
           <!-- Field 1: Nombre de la Empresa / PyME -->
           <div>
-            <label for="company-name" class="block text-xs text-[#cbd5e1] mb-2 font-semibold">
+            <label for="company-name" class="block text-xs text-slate-700 mb-2 font-semibold dark:text-[#cbd5e1]">
               01 / NOMBRE DE TU EMPRESA O NEGOCIO *
             </label>
             <input 
@@ -41,20 +41,20 @@
               name="company" 
               required 
               placeholder="Ej. Distribuidora del Bajío, Taller Zapata..."
-              class="w-full rounded border border-[#1e293b] bg-[#060a12] px-4 py-3 text-xs text-white placeholder-[#475569] focus:border-[#1d4ed8] focus:outline-none focus:ring-1 focus:ring-[#1d4ed8]"
+              class="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600 dark:border-[#1e293b] dark:bg-[#060a12] dark:text-white dark:placeholder-[#475569] dark:focus:border-[#1d4ed8] dark:focus:ring-[#1d4ed8]"
             />
           </div>
 
           <!-- Field 2: Giro Comercial -->
           <div>
-            <label for="sector" class="block text-xs text-[#cbd5e1] mb-2 font-semibold">
+            <label for="sector" class="block text-xs text-slate-700 mb-2 font-semibold dark:text-[#cbd5e1]">
               02 / GIRO O SECTOR COMERCIAL *
             </label>
             <select 
               id="sector" 
               name="sector" 
               required
-              class="w-full rounded border border-[#1e293b] bg-[#060a12] px-4 py-3 text-xs text-white focus:border-[#1d4ed8] focus:outline-none focus:ring-1 focus:ring-[#1d4ed8]"
+              class="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-xs text-slate-900 focus:bg-white focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600 dark:border-[#1e293b] dark:bg-[#060a12] dark:text-white dark:focus:border-[#1d4ed8] dark:focus:ring-[#1d4ed8]"
             >
               <option value="" disabled selected>Selecciona un sector...</option>
               <option value="comercio">Comercio Minorista / Mayorista</option>
@@ -68,7 +68,7 @@
 
           <!-- Field 3: Contacto WhatsApp / Teléfono -->
           <div>
-            <label for="whatsapp" class="block text-xs text-[#cbd5e1] mb-2 font-semibold">
+            <label for="whatsapp" class="block text-xs text-slate-700 mb-2 font-semibold dark:text-[#cbd5e1]">
               03 / WHATSAPP DE CONTACTO *
             </label>
             <input 
@@ -77,13 +77,13 @@
               name="whatsapp" 
               required 
               placeholder="Ej. +52 33 1234 5678"
-              class="w-full rounded border border-[#1e293b] bg-[#060a12] px-4 py-3 text-xs text-white placeholder-[#475569] focus:border-[#1d4ed8] focus:outline-none focus:ring-1 focus:ring-[#1d4ed8]"
+              class="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600 dark:border-[#1e293b] dark:bg-[#060a12] dark:text-white dark:placeholder-[#475569] dark:focus:border-[#1d4ed8] dark:focus:ring-[#1d4ed8]"
             />
           </div>
 
           <!-- Field 4: Correo Electrónico -->
           <div>
-            <label for="email" class="block text-xs text-[#cbd5e1] mb-2 font-semibold">
+            <label for="email" class="block text-xs text-slate-700 mb-2 font-semibold dark:text-[#cbd5e1]">
               04 / CORREO ELECTRÓNICO *
             </label>
             <input 
@@ -92,7 +92,7 @@
               name="email" 
               required 
               placeholder="contacto@tuempresa.com"
-              class="w-full rounded border border-[#1e293b] bg-[#060a12] px-4 py-3 text-xs text-white placeholder-[#475569] focus:border-[#1d4ed8] focus:outline-none focus:ring-1 focus:ring-[#1d4ed8]"
+              class="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600 dark:border-[#1e293b] dark:bg-[#060a12] dark:text-white dark:placeholder-[#475569] dark:focus:border-[#1d4ed8] dark:focus:ring-[#1d4ed8]"
             />
           </div>
 
@@ -100,52 +100,52 @@
 
         <!-- Field 5: Paquete de Interés -->
         <div>
-          <label class="block text-xs text-[#cbd5e1] mb-2 font-semibold">
+          <label class="block text-xs text-slate-700 mb-2 font-semibold dark:text-[#cbd5e1]">
             05 / PAQUETE DE TU INTERÉS
           </label>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <label class="flex items-center space-x-2.5 rounded border border-[#1e293b] bg-[#060a12] p-3.5 cursor-pointer hover:border-[#1d4ed8]">
-              <input type="radio" name="package" value="pkg1" class="text-[#1d4ed8] focus:ring-[#1d4ed8]" />
-              <span class="text-xs text-white font-medium">Paquete 01 ($7,500 MXN)</span>
+            <label class="flex items-center space-x-2.5 rounded-lg border border-slate-200 bg-slate-50 p-3.5 cursor-pointer hover:border-blue-600 transition-colors dark:border-[#1e293b] dark:bg-[#060a12] dark:hover:border-[#1d4ed8]">
+              <input type="radio" name="package" value="pkg1" class="text-blue-600 focus:ring-blue-600 dark:text-[#1d4ed8]" />
+              <span class="text-xs text-slate-800 font-medium dark:text-white">Paquete 01 ($7,500 MXN)</span>
             </label>
-            <label class="flex items-center space-x-2.5 rounded border border-[#1e293b] bg-[#060a12] p-3.5 cursor-pointer hover:border-[#1d4ed8]">
-              <input type="radio" name="package" value="pkg2" class="text-[#1d4ed8] focus:ring-[#1d4ed8]" checked />
-              <span class="text-xs text-white font-medium">Paquete 02 ($12,500 MXN)</span>
+            <label class="flex items-center space-x-2.5 rounded-lg border border-slate-200 bg-slate-50 p-3.5 cursor-pointer hover:border-blue-600 transition-colors dark:border-[#1e293b] dark:bg-[#060a12] dark:hover:border-[#1d4ed8]">
+              <input type="radio" name="package" value="pkg2" class="text-blue-600 focus:ring-blue-600 dark:text-[#1d4ed8]" checked />
+              <span class="text-xs text-slate-800 font-medium dark:text-white">Paquete 02 ($12,500 MXN)</span>
             </label>
-            <label class="flex items-center space-x-2.5 rounded border border-[#1e293b] bg-[#060a12] p-3.5 cursor-pointer hover:border-[#1d4ed8]">
-              <input type="radio" name="package" value="pkg3" class="text-[#1d4ed8] focus:ring-[#1d4ed8]" />
-              <span class="text-xs text-white font-medium">Paquete 03 ($18,500 MXN)</span>
+            <label class="flex items-center space-x-2.5 rounded-lg border border-slate-200 bg-slate-50 p-3.5 cursor-pointer hover:border-blue-600 transition-colors dark:border-[#1e293b] dark:bg-[#060a12] dark:hover:border-[#1d4ed8]">
+              <input type="radio" name="package" value="pkg3" class="text-blue-600 focus:ring-blue-600 dark:text-[#1d4ed8]" />
+              <span class="text-xs text-slate-800 font-medium dark:text-white">Paquete 03 ($18,500 MXN)</span>
             </label>
           </div>
         </div>
 
         <!-- Field 6: Modalidad de Reunión -->
         <div>
-          <label class="block text-xs text-[#cbd5e1] mb-2 font-semibold">
+          <label class="block text-xs text-slate-700 mb-2 font-semibold dark:text-[#cbd5e1]">
             06 / PREFERENCIA DE REUNIÓN (15 MIN)
           </label>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <label class="flex items-center space-x-2.5 rounded border border-[#1e293b] bg-[#060a12] p-3.5 cursor-pointer hover:border-[#1d4ed8]">
-              <input type="radio" name="modality" value="campus" class="text-[#1d4ed8] focus:ring-[#1d4ed8]" checked />
-              <span class="text-xs text-white font-medium">Presencial en CUCEA (Torre Smart Campus)</span>
+            <label class="flex items-center space-x-2.5 rounded-lg border border-slate-200 bg-slate-50 p-3.5 cursor-pointer hover:border-blue-600 transition-colors dark:border-[#1e293b] dark:bg-[#060a12] dark:hover:border-[#1d4ed8]">
+              <input type="radio" name="modality" value="campus" class="text-blue-600 focus:ring-blue-600 dark:text-[#1d4ed8]" checked />
+              <span class="text-xs text-slate-800 font-medium dark:text-white">Presencial en CUCEA (Torre Smart Campus)</span>
             </label>
-            <label class="flex items-center space-x-2.5 rounded border border-[#1e293b] bg-[#060a12] p-3.5 cursor-pointer hover:border-[#1d4ed8]">
-              <input type="radio" name="modality" value="virtual" class="text-[#1d4ed8] focus:ring-[#1d4ed8]" />
-              <span class="text-xs text-white font-medium">Videollamada Google Meet / Zoom</span>
+            <label class="flex items-center space-x-2.5 rounded-lg border border-slate-200 bg-slate-50 p-3.5 cursor-pointer hover:border-blue-600 transition-colors dark:border-[#1e293b] dark:bg-[#060a12] dark:hover:border-[#1d4ed8]">
+              <input type="radio" name="modality" value="virtual" class="text-blue-600 focus:ring-blue-600 dark:text-[#1d4ed8]" />
+              <span class="text-xs text-slate-800 font-medium dark:text-white">Videollamada Google Meet / Zoom</span>
             </label>
           </div>
         </div>
 
         <!-- Submit Button -->
         <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div class="text-xs text-[#94a3b8]">
+          <div class="text-xs text-slate-500 dark:text-[#94a3b8]">
             ⚡ Respuesta en menos de 24 horas por los fundadores de Kessoku Dev.
           </div>
 
           <button 
             type="submit" 
             id="stamp-submit-btn"
-            class="group relative w-full sm:w-auto inline-flex items-center justify-center rounded border border-[#d97706] bg-[#d97706] px-8 py-4 text-xs font-bold uppercase text-[#0b1320] shadow-[0_0_25px_rgba(217,119,6,0.35)] hover:bg-[#f59e0b] hover:shadow-[0_0_35px_rgba(245,158,11,0.5)] active:scale-95 transition-all"
+            class="group relative w-full sm:w-auto inline-flex items-center justify-center rounded-lg border border-amber-600 bg-amber-600 px-8 py-4 text-xs font-bold uppercase text-white shadow-lg shadow-amber-600/30 hover:bg-amber-700 active:scale-95 transition-all dark:border-[#d97706] dark:bg-[#d97706] dark:text-[#0b1320] dark:shadow-[0_0_25px_rgba(217,119,6,0.35)] dark:hover:bg-[#f59e0b]"
           >
             <span>SOLICITAR DIAGNÓSTICO $0</span>
             <span class="ml-2 transition-transform group-hover:translate-x-1">➔</span>
@@ -155,13 +155,13 @@
       </form>
 
       <!-- Success State Overlay (Hidden by default) -->
-      <div id="form-success" class="hidden mt-8 rounded-lg border-2 border-dashed border-[#10b981] bg-[#10b981]/10 p-6 sm:p-8 text-center font-mono-tech space-y-3">
-        <div class="text-4xl">✓</div>
-        <div class="text-lg font-bold text-white uppercase">SOLICITUD RECIBIDA CON ÉXITO</div>
-        <p class="text-xs sm:text-sm text-[#cbd5e1] max-w-md mx-auto leading-relaxed">
+      <div id="form-success" class="hidden mt-8 rounded-xl border-2 border-dashed border-emerald-500 bg-emerald-50 p-6 sm:p-8 text-center font-mono-tech space-y-3 dark:border-[#10b981] dark:bg-[#10b981]/10">
+        <div class="text-4xl text-emerald-600 dark:text-[#10b981]">✓</div>
+        <div class="text-lg font-bold text-slate-950 uppercase dark:text-white">SOLICITUD RECIBIDA CON ÉXITO</div>
+        <p class="text-xs sm:text-sm text-slate-700 max-w-md mx-auto leading-relaxed dark:text-[#cbd5e1]">
           Hemos registrado tu solicitud. Te escribiremos vía WhatsApp en menos de 24 horas para coordinar la fecha y hora de tu diagnóstico de 15 minutos.
         </p>
-        <div class="text-xs text-[#10b981] font-bold">
+        <div class="text-xs text-emerald-700 font-bold dark:text-[#10b981]">
           ESTATUS: CONFIRMACIÓN EN PROCESO
         </div>
       </div>
@@ -172,23 +172,27 @@
 </section>
 
 <script>
-  // Simple interactive handling for the audit form submission
-  const auditForm = document.getElementById('audit-form');
-  const successState = document.getElementById('form-success');
+  // Manejo de envío de formulario de auditoría
+  function initAuditForm() {
+    const auditForm = document.getElementById('audit-form');
+    const successState = document.getElementById('form-success');
 
-  auditForm?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Animate button feedback
-    const btn = document.getElementById('stamp-submit-btn');
-    if (btn) {
-      btn.textContent = 'REGISTRANDO...';
-      btn.setAttribute('disabled', 'true');
-    }
+    auditForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const btn = document.getElementById('stamp-submit-btn');
+      if (btn) {
+        btn.textContent = 'REGISTRANDO...';
+        btn.setAttribute('disabled', 'true');
+      }
 
-    setTimeout(() => {
-      if (auditForm) auditForm.style.display = 'none';
-      if (successState) successState.classList.remove('hidden');
-    }, 600);
-  });
+      setTimeout(() => {
+        if (auditForm) auditForm.style.display = 'none';
+        if (successState) successState.classList.remove('hidden');
+      }, 600);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initAuditForm);
+  document.addEventListener('astro:page-load', initAuditForm);
 </script>

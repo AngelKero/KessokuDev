@@ -169,8 +169,30 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
             </p>
           </div>
         </div>
-        <span class="text-xs font-mono-tech text-[#64748b] group-hover:text-[#22d3ee] ml-2 shrink-0 transition-colors">Chat ↗</span>
-      </a>
+      <!-- 06: Alternar Tema Claro / Oscuro -->
+      <button 
+        id="palette-theme-toggle"
+        type="button"
+        class="w-full text-left group flex items-start justify-between rounded-xl border border-[#1e293b] bg-[#0e1726]/60 p-3.5 transition-all hover:border-[#f59e0b] hover:bg-[#131f38] hover:shadow-[0_0_20px_rgba(245,158,11,0.15)] cursor-pointer"
+      >
+        <div class="flex items-start space-x-3.5">
+          <div class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-[#f59e0b]/40 bg-[#f59e0b]/10 text-xs font-mono-tech font-bold text-[#f59e0b] group-hover:scale-105 transition-transform">
+            06
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <h4 class="text-sm font-bold text-white group-hover:text-[#f59e0b] transition-colors">
+                Alternar Modo Claro / Modo Oscuro
+              </h4>
+              <span class="rounded bg-[#f59e0b]/20 px-1.5 py-0.5 text-[9px] font-mono-tech font-bold text-[#f59e0b] border border-[#f59e0b]/30">APARIENCIA</span>
+            </div>
+            <p class="mt-1 text-xs text-[#94a3b8] leading-relaxed">
+              Cambia la apariencia del sitio entre Modo Claro (default para clientes PyME) y Modo Oscuro (terminal).
+            </p>
+          </div>
+        </div>
+        <span class="text-xs font-mono-tech text-[#64748b] group-hover:text-[#f59e0b] ml-2 shrink-0 transition-colors">Switch ⚡</span>
+      </button>
     </div>
 
     <!-- Bottom Controls & Hints -->
@@ -194,7 +216,8 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
     const card = document.getElementById('founder-palette-card');
     const closeBtn = document.getElementById('close-palette-btn');
 
-    if (!overlay || !card) return;
+    if (!overlay || !card || overlay.dataset.init === 'true') return;
+    overlay.dataset.init = 'true';
 
     let isOpen = false;
 
@@ -257,9 +280,19 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
     window.addEventListener('open-founder-palette', () => {
       openPalette();
     });
+
+    // Conectar botón 06 con el conmutador de tema
+    const paletteThemeToggle = document.getElementById('palette-theme-toggle');
+    paletteThemeToggle?.addEventListener('click', () => {
+      document.getElementById('theme-toggle')?.click();
+    });
   }
 
   // Inicializar al cargar y ante transiciones de Astro
-  document.addEventListener('DOMContentLoaded', initFounderPalette);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFounderPalette);
+  } else {
+    initFounderPalette();
+  }
   document.addEventListener('astro:page-load', initFounderPalette);
 </script>

@@ -11,6 +11,9 @@ const {
   title = "KESSOKU DEV // Tu Negocio en Internet con Calidad de Gran Empresa | CUCEA",
   description = "Desarrollo web y software empaquetado para PyMEs y startups de Jalisco desde CUCEA."
 } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL.endsWith('/') 
+  ? import.meta.env.BASE_URL 
+  : `${import.meta.env.BASE_URL}/`;
 ---
 
 <!doctype html>
@@ -18,7 +21,7 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+    <link rel="icon" type="image/svg+xml" href={`${baseUrl}favicon.svg`} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -26,9 +29,19 @@ const {
     <!-- Distinctive Typographic System: Chivo (Display) + Public Sans (Body) + Azeret Mono (Technical Data/Stamps) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,300..900;1,300..900&family=Chivo:ital,wght@0,300..900;1,300..900&family=Public+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" />
+    <!-- Script Anti-FOUC Inmediato: Modo Claro por defecto con persistencia en localStorage -->
+    <script is:inline>
+      (function() {
+        const theme = localStorage.getItem('kd-theme') || 'light';
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
   </head>
-  <body class="min-h-screen bg-[#080d1a] text-[#f8fafc] antialiased selection:bg-[#1d4ed8] selection:text-white">
+  <body class="min-h-screen bg-[var(--bg-page)] text-[var(--text-primary)] antialiased selection:bg-[#1d4ed8] selection:text-white transition-colors duration-200">
     <slot />
     <FounderPalette />
 

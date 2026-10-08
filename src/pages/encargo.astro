@@ -1,6 +1,7 @@
 ---
 // src/pages/encargo.astro - Hoja de Encargo B2B de 1 Página (Imprimible & Exportable a PDF)
 import '../styles/global.css';
+import FounderPalette from '../components/FounderPalette.astro';
 
 const baseUrl = import.meta.env.BASE_URL.endsWith('/') 
   ? import.meta.env.BASE_URL 
@@ -390,6 +391,8 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       </footer>
 
     </main>
+
+    <FounderPalette />
 
     <!-- SCRIPT DE INTERACTIVIDAD & IMPRESIÓN -->
     <script>
