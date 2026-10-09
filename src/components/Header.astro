@@ -10,17 +10,17 @@ import ThemeToggle from './ThemeToggle.astro';
       <div class="flex items-center space-x-3">
         <span class="inline-flex items-center text-emerald-600 font-semibold dark:text-[#10b981]">
           <span class="mr-1.5 h-2 w-2 animate-pulse rounded-full bg-emerald-500 dark:bg-[#10b981]"></span>
-          SISTEMA ACTIVO // 60 FPS
+          <span data-scramble="SISTEMA ACTIVO // 60 FPS">SISTEMA ACTIVO // 60 FPS</span>
         </span>
         <span class="hidden text-slate-300 md:inline dark:text-[#475569]">•</span>
-        <span class="hidden text-slate-700 md:inline dark:text-[#cbd5e1]">INICIATIVA CUCEA TECH // UDEG</span>
+        <span class="hidden text-slate-700 md:inline dark:text-[#cbd5e1]" data-scramble="INICIATIVA CUCEA TECH // UDEG">INICIATIVA CUCEA TECH // UDEG</span>
         <span class="hidden text-slate-300 md:inline dark:text-[#475569]">•</span>
-        <span class="hidden text-amber-700 font-medium lg:inline dark:text-[#d97706]">SEDE: TORRE SMART CAMPUS (PISO 2)</span>
+        <span class="hidden text-amber-700 font-medium lg:inline dark:text-[#d97706]" data-scramble="SEDE: TORRE SMART CAMPUS (PISO 2)">SEDE: TORRE SMART CAMPUS (PISO 2)</span>
       </div>
       <div class="flex items-center space-x-3">
-        <span class="text-slate-800 dark:text-[#f8fafc]">ESTADO: <span class="text-emerald-600 font-bold dark:text-[#10b981]">DISPONIBLE</span></span>
+        <span class="text-slate-800 dark:text-[#f8fafc]">ESTADO: <span class="text-emerald-600 font-bold dark:text-[#10b981]" data-scramble="DISPONIBLE">DISPONIBLE</span></span>
         <span class="text-slate-300 dark:text-[#475569]">•</span>
-        <span class="text-amber-700 font-bold dark:text-[#f59e0b]">4 CUPOS ESTA SEMANA</span>
+        <span class="text-amber-700 font-bold dark:text-[#f59e0b]" data-scramble="4 CUPOS ESTA SEMANA">4 CUPOS ESTA SEMANA</span>
       </div>
     </div>
   </div>
@@ -67,9 +67,10 @@ import ThemeToggle from './ThemeToggle.astro';
 
       <a 
         href="#diagnostico" 
+        data-magnetic-btn
         class="inline-flex items-center justify-center rounded border border-amber-600/40 bg-amber-500/10 px-4 py-2 text-xs font-mono-tech font-bold text-amber-800 hover:bg-amber-600 hover:text-white transition-all active:translate-y-0.5 dark:border-[#d97706] dark:bg-[#d97706]/10 dark:text-[#f59e0b] dark:hover:bg-[#d97706] dark:hover:text-[#0b1320]"
       >
-        <span class="mr-1.5">⚡</span> DIAGNÓSTICO $0
+        <span class="mr-1.5 magnetic-icon">⚡</span> DIAGNÓSTICO $0
       </a>
     </div>
   </div>

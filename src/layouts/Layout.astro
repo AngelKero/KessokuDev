@@ -45,34 +45,20 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
     <slot />
     <FounderPalette />
 
-    <!-- Lenis & GSAP Smooth Performance Initialization -->
+    <!-- Kessoku Dev Awwwards-Caliber Motion System -->
     <script>
-      import Lenis from 'lenis';
-      import { gsap } from 'gsap';
-      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+      import { initMotionSystem } from '../scripts/motion';
 
-      gsap.registerPlugin(ScrollTrigger);
-
-      // Initialize Lenis smooth scroll with optimal physics
-      const lenis = new Lenis({
-        duration: 1.1,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: 'vertical',
-        smoothWheel: true,
-      });
-
-      function raf(time: number) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
+      // Support initial page load and Astro view transitions
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => initMotionSystem(), { once: true });
+      } else {
+        initMotionSystem();
       }
-      requestAnimationFrame(raf);
 
-      // Sync GSAP ScrollTrigger with Lenis
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
+      document.addEventListener('astro:after-swap', () => {
+        initMotionSystem();
       });
-      gsap.ticker.lagSmoothing(0);
     </script>
   </body>
 </html>

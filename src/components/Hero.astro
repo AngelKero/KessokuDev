@@ -10,7 +10,7 @@
       <div class="lg:col-span-7 space-y-6">
         
         <!-- Trust & Origin Strip -->
-        <div class="inline-flex flex-wrap items-center gap-2 rounded border border-slate-300 bg-white px-3.5 py-2 text-xs font-mono-tech text-slate-700 shadow-xs transition-colors duration-200 dark:border-[#1e293b] dark:bg-[#0b1320] dark:text-[#94a3b8] dark:shadow-none">
+        <div data-hero-badge class="inline-flex flex-wrap items-center gap-2 rounded border border-slate-300 bg-white px-3.5 py-2 text-xs font-mono-tech text-slate-700 shadow-xs transition-colors duration-200 dark:border-[#1e293b] dark:bg-[#0b1320] dark:text-[#94a3b8] dark:shadow-none">
           <span class="rounded bg-blue-700 px-2 py-0.5 font-bold text-white dark:bg-[#1d4ed8]">INICIATIVA CUCEA</span>
           <span class="text-slate-900 font-semibold dark:text-[#f8fafc]">DESARROLLO WEB & SOFTWARE PARA PYMES</span>
           <span class="text-slate-300 dark:text-[#475569]">|</span>
@@ -19,47 +19,49 @@
 
         <!-- Hero Headline in Chivo Black (AIDA/PAS Outcome Formula) -->
         <div class="space-y-4">
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-950 leading-[1.08] uppercase font-display dark:text-white">
+          <h1 id="hero-title" class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-950 leading-[1.08] uppercase font-display dark:text-white">
             Tu negocio en internet con calidad de gran empresa. <br/>
             <span class="text-blue-700 font-black dark:text-[#93c5fd]">
               En 5 días y a precio accesible para tu PyME.
             </span>
           </h1>
-          <p class="max-w-2xl text-base sm:text-lg text-slate-700 leading-relaxed font-body dark:text-[#94a3b8]">
+          <p data-hero-desc class="max-w-2xl text-base sm:text-lg text-slate-700 leading-relaxed font-body dark:text-[#94a3b8]">
             Hacemos que tu PyME en Guadalajara deje de verse informal y empiece a captar clientes en Google y WhatsApp. Páginas web ultra-rápidas, catálogos digitales y cotizadores automáticos sin cotizaciones infladas ni meses de espera.
           </p>
         </div>
 
         <!-- The 3 Core Commercial Pillars -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 text-xs font-mono-tech">
-          <div class="rounded border border-slate-200 bg-white p-4 shadow-xs transition-colors duration-200 dark:border-[#1e293b] dark:bg-[#0c1424] dark:shadow-none">
+          <div data-hero-pillar class="rounded border border-slate-200 bg-white p-4 shadow-xs transition-colors duration-200 dark:border-[#1e293b] dark:bg-[#0c1424] dark:shadow-none">
             <div class="text-amber-700 font-bold mb-1.5 text-xs dark:text-[#d97706]">01 / PRECIOS FIJOS</div>
             <p class="text-slate-600 text-xs leading-normal dark:text-[#94a3b8]">Paquetes cerrados desde $7,500 MXN. Sabes exactamente qué incluye y cuánto pagas.</p>
           </div>
-          <div class="rounded border border-slate-200 bg-white p-4 shadow-xs transition-colors duration-200 dark:border-[#1e293b] dark:bg-[#0c1424] dark:shadow-none">
+          <div data-hero-pillar class="rounded border border-slate-200 bg-white p-4 shadow-xs transition-colors duration-200 dark:border-[#1e293b] dark:bg-[#0c1424] dark:shadow-none">
             <div class="text-emerald-700 font-bold mb-1.5 text-xs dark:text-[#10b981]">02 / ENTREGA EN 5 DÍAS</div>
             <p class="text-slate-600 text-xs leading-normal dark:text-[#94a3b8]">Tu sitio funcionando en días, no en los 2 meses que tardan las agencias tradicionales.</p>
           </div>
-          <div class="rounded border border-slate-200 bg-white p-4 shadow-xs transition-colors duration-200 dark:border-[#1e293b] dark:bg-[#0c1424] dark:shadow-none">
+          <div data-hero-pillar class="rounded border border-slate-200 bg-white p-4 shadow-xs transition-colors duration-200 dark:border-[#1e293b] dark:bg-[#0c1424] dark:shadow-none">
             <div class="text-blue-700 font-bold mb-1.5 text-xs dark:text-[#3b82f6]">03 / SEDE EN CUCEA</div>
             <p class="text-slate-600 text-xs leading-normal dark:text-[#94a3b8]">Reunión presencial en Torre Smart Campus (Piso 2) o videollamada con los fundadores.</p>
           </div>
         </div>
 
         <!-- Interactive CTAs with High Intent Verbs -->
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
+        <div data-hero-ctas class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
           <a 
             href="#diagnostico" 
+            data-magnetic-btn
             class="group relative inline-flex items-center justify-center rounded border border-blue-700 bg-blue-700 px-7 py-4 text-xs sm:text-sm font-mono-tech font-bold text-white shadow-lg shadow-blue-700/20 transition-all hover:bg-blue-800 active:scale-95 dark:border-[#2563eb] dark:bg-[#1d4ed8] dark:shadow-[0_0_25px_rgba(29,78,216,0.35)] dark:hover:bg-[#2563eb]"
           >
             <span class="flex items-center space-x-2">
               <span>SOLICITAR DIAGNÓSTICO DIGITAL $0 // 15 MIN</span>
-              <span class="transition-transform group-hover:translate-x-1">➔</span>
+              <span class="magnetic-icon transition-transform group-hover:translate-x-1">➔</span>
             </span>
           </a>
 
           <a 
             href="#paquetes" 
+            data-magnetic-btn
             class="inline-flex items-center justify-center rounded border border-slate-300 bg-white px-6 py-4 text-xs sm:text-sm font-mono-tech text-slate-800 shadow-xs hover:border-slate-400 hover:bg-slate-100 transition-all dark:border-[#334155] dark:bg-[#0b1320] dark:text-[#cbd5e1] dark:hover:border-[#64748b] dark:hover:text-white dark:hover:bg-[#111c2e]"
           >
             VER PAQUETES Y PRECIOS
@@ -76,7 +78,7 @@
 
       <!-- Right Column: The Service Guarantee Card (5 cols) -->
       <div class="lg:col-span-5">
-        <div class="relative rounded-xl border border-slate-300 bg-white p-6 sm:p-7 shadow-xl transition-colors duration-200 dark:border-2 dark:border-[#334155] dark:bg-[#090e1a] dark:shadow-2xl">
+        <div id="hero-guarantee-card" data-tilt-card class="relative rounded-xl border border-slate-300 bg-white p-6 sm:p-7 shadow-xl transition-colors duration-200 dark:border-2 dark:border-[#334155] dark:bg-[#090e1a] dark:shadow-2xl">
           
           <!-- Document Corner Header -->
           <div class="flex items-center justify-between border-b border-slate-200 pb-4 font-mono-tech dark:border-[#1e293b]">
