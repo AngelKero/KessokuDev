@@ -45,9 +45,16 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
       /* Hoja de papel física Letter */
       .sheet-paper {
-        width: 215.9mm;
-        min-height: 279.4mm;
+        width: 100%;
+        max-width: 215.9mm;
         box-sizing: border-box;
+      }
+
+      @media (min-width: 1024px) {
+        .sheet-paper {
+          width: 215.9mm;
+          min-height: 279.4mm;
+        }
       }
 
       /* Reglas de impresión estrictas para 1 sola página Letter */
@@ -100,27 +107,27 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       }
     </style>
   </head>
-  <body class="bg-[#050914] text-slate-800 antialiased min-h-screen py-6 px-2 sm:px-4 flex flex-col items-center justify-start selection:bg-[#1d4ed8] selection:text-white">
+  <body class="bg-[#050914] text-slate-800 antialiased min-h-screen py-4 sm:py-6 px-2 sm:px-4 flex flex-col items-center justify-start selection:bg-[#1d4ed8] selection:text-white">
 
     <!-- BARRA SUPERIOR DE ACCIÓN (SÓLO PANTALLA) -->
-    <header class="no-print w-full max-w-[215.9mm] mb-5 flex flex-wrap items-center justify-between gap-3 bg-[#0c1427] border border-[#1e293b] p-3.5 rounded-xl shadow-xl text-xs font-mono-tech">
-      <div class="flex items-center space-x-3">
+    <header class="no-print w-full max-w-[215.9mm] mb-4 sm:mb-5 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3 bg-[#0c1427] border border-[#1e293b] p-3 sm:p-3.5 rounded-xl shadow-xl text-xs font-mono-tech">
+      <div class="flex items-center justify-between sm:justify-start space-x-2 sm:space-x-3">
         <a 
           href={baseUrl} 
-          class="flex items-center space-x-1.5 text-[#93c5fd] hover:text-white hover:underline transition-colors"
+          class="flex items-center space-x-1.5 text-[#93c5fd] hover:text-white hover:underline transition-colors text-[11px] sm:text-xs"
         >
           <span>←</span>
           <span>Volver a Kessoku Dev</span>
         </a>
-        <span class="text-[#334155]">•</span>
-        <span class="text-[#f59e0b] font-bold">HOJA DE ENCARGO B2B // 1 PÁGINA</span>
+        <span class="text-[#334155] hidden xs:inline">•</span>
+        <span class="text-[#f59e0b] font-bold text-[10px] sm:text-xs tracking-tight">HOJA B2B</span>
       </div>
 
-      <div class="flex items-center space-x-2">
+      <div class="flex items-center justify-end space-x-2">
         <button 
           id="toggle-date-btn"
           type="button"
-          class="rounded border border-[#334155] bg-[#1e293b] px-3 py-1.5 text-white hover:bg-[#2e3e57] transition-colors"
+          class="flex-1 sm:flex-initial rounded border border-[#334155] bg-[#1e293b] px-2.5 sm:px-3 py-1.5 text-white hover:bg-[#2e3e57] transition-colors text-[11px] sm:text-xs"
           title="Actualizar fecha a hoy"
         >
           📅 Fecha Hoy
@@ -128,85 +135,85 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         <button 
           id="print-action-btn"
           type="button"
-          class="inline-flex items-center space-x-1.5 rounded bg-[#d97706] px-4 py-1.5 font-bold text-[#080d1a] hover:bg-[#b45309] hover:text-white transition-all shadow-md active:scale-95"
+          class="flex-1 sm:flex-initial inline-flex items-center justify-center space-x-1.5 rounded bg-[#d97706] px-3 sm:px-4 py-1.5 font-bold text-[#080d1a] hover:bg-[#b45309] hover:text-white transition-all shadow-md active:scale-95 text-[11px] sm:text-xs whitespace-nowrap"
         >
           <span>🖨️</span>
-          <span>Imprimir / Guardar PDF</span>
+          <span>Imprimir / PDF</span>
         </button>
       </div>
     </header>
 
     <!-- HOJA FÍSICA / DOCUMENTO FORMAL VINCULANTE (1 PÁGINA CARTA) -->
-    <main class="sheet-paper bg-white rounded-sm shadow-2xl p-7 text-slate-900 border border-slate-300 relative flex flex-col justify-between text-[11px] leading-tight">
+    <main class="sheet-paper bg-white rounded-sm shadow-2xl p-4 sm:p-7 print:p-6 text-slate-900 border border-slate-300 relative flex flex-col justify-between text-[11px] leading-tight overflow-hidden sm:overflow-visible">
       
       <!-- 1. ENCABEZADO INSTITUCIONAL -->
       <section class="border-b-2 border-slate-900 pb-2.5">
-        <div class="flex items-start justify-between">
+        <div class="flex flex-col sm:flex-row print:flex-row items-start sm:items-start justify-between gap-2.5 sm:gap-4">
           <div class="space-y-0.5">
             <div class="flex items-center space-x-2">
               <span class="inline-flex items-center justify-center bg-slate-900 text-white font-mono-tech font-bold text-xs px-2 py-0.5 rounded-xs">
                 KD
               </span>
-              <h1 class="text-base font-extrabold tracking-tight font-display-title text-slate-950">
+              <h1 class="text-sm sm:text-base font-extrabold tracking-tight font-display-title text-slate-950">
                 KESSOKU DEV // HOJA DE ENCARGO B2B
               </h1>
             </div>
-            <p class="text-[10px] text-slate-700 font-semibold uppercase tracking-wider">
+            <p class="text-[9.5px] sm:text-[10px] text-slate-700 font-semibold uppercase tracking-wider">
               Despacho de Software Productizado & Soluciones Web de Alta Velocidad (60 FPS)
             </p>
-            <p class="text-[9.5px] text-slate-600 font-mono-tech">
+            <p class="text-[9px] sm:text-[9.5px] text-slate-600 font-mono-tech">
               Iniciativa de Vinculación Tecnológica • Torre Smart Campus (Piso 2) • CUCEA Universidad de Guadalajara
             </p>
           </div>
 
           <!-- Metadatos de Folio y Fechas -->
-          <div class="text-right font-mono-tech text-[10px] space-y-1 bg-slate-50 border border-slate-300 p-2 rounded-xs">
+          <div class="w-full sm:w-auto text-left sm:text-right print:text-right font-mono-tech text-[9.5px] sm:text-[10px] flex sm:flex-col print:flex-col justify-between sm:justify-start gap-2 sm:gap-1 bg-slate-50 border border-slate-300 p-2 rounded-xs">
             <div>
               <span class="text-slate-500">FOLIO:</span>
-              <span id="doc-folio" class="font-bold text-slate-950 text-xs">KD-2026-0419</span>
+              <span id="doc-folio" class="font-bold text-slate-950 text-xs ml-1 sm:ml-0">KD-2026-0419</span>
             </div>
             <div>
               <span class="text-slate-500">FECHA:</span>
-              <span id="doc-date" class="font-semibold text-slate-900">08 / OCT / 2026</span>
+              <span id="doc-date" class="font-semibold text-slate-900 ml-1 sm:ml-0">08 / OCT / 2026</span>
             </div>
             <div>
               <span class="text-slate-500">ENTREGA:</span>
-              <span class="font-bold text-amber-700">5 DÍAS HÁBILES</span>
+              <span class="font-bold text-amber-700 ml-1 sm:ml-0">5 DÍAS HÁBILES</span>
             </div>
           </div>
         </div>
       </section>
 
       <!-- 2. DATOS DE LA EMPRESA CLIENTE (CAMPOS EDITABLES O RELLENABLES A MANO) -->
-      <section class="my-2 border border-slate-300 rounded-xs p-2.5 bg-slate-50/50">
-        <div class="text-[10px] font-bold font-mono-tech text-slate-900 uppercase border-b border-slate-300 pb-1 mb-2 flex justify-between">
+      <section class="my-2 border border-slate-300 rounded-xs p-2 sm:p-2.5 bg-slate-50/50">
+        <div class="text-[9.5px] sm:text-[10px] font-bold font-mono-tech text-slate-900 uppercase border-b border-slate-300 pb-1 mb-2 flex flex-col xs:flex-row justify-between gap-1">
           <span>01. DATOS FISCALES / COMERCIALES DEL CONTRATANTE</span>
-          <span class="text-slate-500 font-normal">Requisitos de Facturación y Contacto</span>
+          <span class="text-slate-500 font-normal text-[8.5px] sm:text-[10px]">Requisitos de Facturación y Contacto</span>
         </div>
-        <div class="grid grid-cols-3 gap-x-4 gap-y-2 text-[10.5px]">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 print:grid-cols-3 gap-x-4 gap-y-2 text-[10.5px]">
           <div>
-            <span class="block text-[9px] font-semibold text-slate-500 uppercase">Empresa / Razón Social:</span>
-            <span class="block font-medium border-b border-slate-400 py-0.5 min-h-[16px]" contenteditable="true">___________________________________</span>
+            <span class="block text-[8.5px] sm:text-[9px] font-semibold text-slate-500 uppercase">Empresa / Razón Social:</span>
+            <span class="block font-medium border-b border-slate-400 py-0.5 min-h-[16px] text-slate-800 break-all" contenteditable="true">____________________________</span>
           </div>
           <div>
-            <span class="block text-[9px] font-semibold text-slate-500 uppercase">Representante / Titular:</span>
-            <span class="block font-medium border-b border-slate-400 py-0.5 min-h-[16px]" contenteditable="true">___________________________________</span>
+            <span class="block text-[8.5px] sm:text-[9px] font-semibold text-slate-500 uppercase">Representante / Titular:</span>
+            <span class="block font-medium border-b border-slate-400 py-0.5 min-h-[16px] text-slate-800 break-all" contenteditable="true">____________________________</span>
           </div>
           <div>
-            <span class="block text-[9px] font-semibold text-slate-500 uppercase">RFC / CURP (Facturación):</span>
-            <span class="block font-medium border-b border-slate-400 py-0.5 min-h-[16px]" contenteditable="true">___________________________________</span>
+            <span class="block text-[8.5px] sm:text-[9px] font-semibold text-slate-500 uppercase">RFC / CURP (Facturación):</span>
+            <span class="block font-medium border-b border-slate-400 py-0.5 min-h-[16px] text-slate-800 break-all" contenteditable="true">____________________________</span>
           </div>
           <div>
-            <span class="block text-[9px] font-semibold text-slate-500 uppercase">Teléfono / WhatsApp Directo:</span>
-            <span class="block font-medium border-b border-slate-400 py-0.5 min-h-[16px]" contenteditable="true">___________________________________</span>
+            <span class="block text-[8.5px] sm:text-[9px] font-semibold text-slate-500 uppercase">Teléfono / WhatsApp Directo:</span>
+            <span class="block font-medium border-b border-slate-400 py-0.5 min-h-[16px] text-slate-800 break-all" contenteditable="true">____________________________</span>
           </div>
           <div>
-            <span class="block text-[9px] font-semibold text-slate-500 uppercase">Correo Electrónico:</span>
-            <span class="block font-medium border-b border-slate-400 py-0.5 min-h-[16px]" contenteditable="true">___________________________________</span>
+            <span class="block text-[8.5px] sm:text-[9px] font-semibold text-slate-500 uppercase">Correo Electrónico:</span>
+            <span class="block font-medium border-b border-slate-400 py-0.5 min-h-[16px] text-slate-800 break-all" contenteditable="true">____________________________</span>
           </div>
           <div>
-            <span class="block text-[9px] font-semibold text-slate-500 uppercase">Giro Comercial / Ubicación:</span>
-            <span class="block font-medium border-b border-slate-400 py-0.5 min-h-[16px]" contenteditable="true">Zapopan / Guadalajara, Jal.</span>
+            <span class="block text-[8.5px] sm:text-[9px] font-semibold text-slate-500 uppercase">Giro Comercial / Ubicación:</span>
+            <span class="block font-medium border-b border-slate-400 py-0.5 min-h-[16px] text-slate-800 break-all" contenteditable="true">Zapopan / Guadalajara, Jal.</span>
           </div>
         </div>
       </section>
@@ -218,7 +225,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <span class="text-slate-500 font-normal">Marcar con [X] el paquete seleccionado</span>
         </div>
 
-        <div class="grid grid-cols-3 gap-2.5">
+        <div class="grid grid-cols-1 md:grid-cols-3 print:grid-cols-3 gap-2.5">
           <!-- PAQUETE 01 -->
           <div class="border border-slate-300 rounded-xs p-2 bg-white relative flex flex-col justify-between">
             <div>
@@ -298,7 +305,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         <!-- MÓDULOS ADD-ON ESTANDARIZADOS -->
         <div class="mt-2 border border-slate-300 p-2 rounded-xs bg-white text-[9.5px]">
           <span class="font-bold font-mono-tech text-slate-900 block mb-1">ADD-ONS Y EXPANSIONES DEL CATÁLOGO (OPCIONALES):</span>
-          <div class="grid grid-cols-4 gap-2">
+          <div class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 print:grid-cols-4 gap-2">
             <label class="flex items-center space-x-1 cursor-pointer">
               <input type="checkbox" class="h-3 w-3 accent-slate-900" />
               <span>Sincronización Sheets Multi (+ $2,500)</span>
@@ -319,7 +326,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
         </div>
 
         <!-- CONDICIONES DE LIQUIDACIÓN Y ANTICIPO -->
-        <div class="mt-2 grid grid-cols-3 gap-2 font-mono-tech text-[10.5px] bg-slate-100 border border-slate-300 p-2 rounded-xs">
+        <div class="mt-2 grid grid-cols-1 sm:grid-cols-3 print:grid-cols-3 gap-2 font-mono-tech text-[10.5px] bg-slate-100 border border-slate-300 p-2 rounded-xs">
           <div>
             <span class="block text-[8.5px] text-slate-500 uppercase">Inversión Total Proyecto:</span>
             <span class="font-bold text-slate-950 text-xs" contenteditable="true">$ 12,500.00 MXN</span>
@@ -342,7 +349,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           <span class="text-slate-500 font-normal">Modelo Productizado Anti-Dispersión</span>
         </div>
 
-        <div class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-slate-700">
+        <div class="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-x-4 gap-y-1.5 text-slate-700">
           <div>
             <p><strong>1. ALCANCE CERRADO Y CATÁLOGO:</strong> El presente encargo comprende estrictamente las especificaciones del paquete seleccionado. Kessoku Dev no ejecuta desarrollos a medida fuera de catálogo bajo este contrato, garantizando la velocidad y estabilidad prometida.</p>
           </div>
@@ -364,7 +371,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
           Enteradas las partes del alcance, tiempos y montos, firman de conformidad en dos ejemplares el día de su emisión:
         </p>
 
-        <div class="grid grid-cols-2 gap-8 px-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 print:grid-cols-2 gap-6 sm:gap-8 px-2 sm:px-6">
           <!-- Firma Cliente -->
           <div class="text-center space-y-1">
             <div class="border-b border-slate-900 h-10 w-full mb-1"></div>
@@ -384,7 +391,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
       </section>
 
       <!-- 6. PIE DE PÁGINA FORMAL -->
-      <footer class="mt-2 pt-1 border-t border-slate-200 text-center text-[8px] font-mono-tech text-slate-500 flex justify-between items-center">
+      <footer class="mt-2 pt-1 border-t border-slate-200 text-center text-[8px] font-mono-tech text-slate-500 flex flex-col sm:flex-row print:flex-row justify-between items-center gap-1 sm:gap-0">
         <span>KESSOKU DEV • PRODUCTIZED SOFTWARE FOR BUSINESS</span>
         <span>TORRE SMART CAMPUS (PISO 2) • CUCEA UDEG</span>
         <span>DOCUMENTO CONTRACTUAL // VÁLIDO PARA ENTREGA EN 5 DÍAS</span>

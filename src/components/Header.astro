@@ -5,43 +5,44 @@ import ThemeToggle from './ThemeToggle.astro';
 
 <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 text-slate-900 shadow-xs backdrop-blur-md transition-colors duration-200 dark:border-[#1e293b] dark:bg-[#080d1a]/95 dark:text-[#f8fafc] dark:shadow-none">
   <!-- Top Ticker / Institutional Trust Strip -->
-  <div class="border-b border-slate-200/80 bg-slate-100/90 px-4 py-2 text-xs font-mono-tech text-slate-600 transition-colors duration-200 dark:border-[#1e293b]/60 dark:bg-[#060911] dark:text-[#94a3b8]">
-    <div class="mx-auto flex max-w-7xl items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <span class="inline-flex items-center text-emerald-600 font-semibold dark:text-[#10b981]">
+  <div class="border-b border-slate-200/80 bg-slate-100/90 px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-mono-tech text-slate-600 transition-colors duration-200 dark:border-[#1e293b]/60 dark:bg-[#060911] dark:text-[#94a3b8] overflow-hidden">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-2">
+      <div class="flex items-center space-x-2 sm:space-x-3 shrink-0">
+        <span class="inline-flex items-center text-emerald-600 font-semibold dark:text-[#10b981] whitespace-nowrap">
           <span class="mr-1.5 h-2 w-2 animate-pulse rounded-full bg-emerald-500 dark:bg-[#10b981]"></span>
-          <span data-scramble="SISTEMA ACTIVO // 60 FPS">SISTEMA ACTIVO // 60 FPS</span>
+          <span data-scramble="SISTEMA ACTIVO // 60 FPS">60 FPS</span>
+          <span class="hidden xs:inline" data-scramble=" // CUCEA TECH"> // CUCEA TECH</span>
         </span>
-        <span class="hidden text-slate-300 md:inline dark:text-[#475569]">•</span>
-        <span class="hidden text-slate-700 md:inline dark:text-[#cbd5e1]" data-scramble="INICIATIVA CUCEA TECH // UDEG">INICIATIVA CUCEA TECH // UDEG</span>
-        <span class="hidden text-slate-300 md:inline dark:text-[#475569]">•</span>
-        <span class="hidden text-amber-700 font-medium lg:inline dark:text-[#d97706]" data-scramble="SEDE: TORRE SMART CAMPUS (PISO 2)">SEDE: TORRE SMART CAMPUS (PISO 2)</span>
+        <span class="hidden md:inline text-slate-300 dark:text-[#475569]">•</span>
+        <span class="hidden md:inline text-slate-700 dark:text-[#cbd5e1]" data-scramble="INICIATIVA CUCEA TECH // UDEG">INICIATIVA CUCEA TECH // UDEG</span>
+        <span class="hidden lg:inline text-slate-300 dark:text-[#475569]">•</span>
+        <span class="hidden lg:inline text-amber-700 font-medium dark:text-[#d97706]" data-scramble="SEDE: TORRE SMART CAMPUS (PISO 2)">SEDE: TORRE SMART CAMPUS (PISO 2)</span>
       </div>
-      <div class="flex items-center space-x-3">
-        <span class="text-slate-800 dark:text-[#f8fafc]">ESTADO: <span class="text-emerald-600 font-bold dark:text-[#10b981]" data-scramble="DISPONIBLE">DISPONIBLE</span></span>
-        <span class="text-slate-300 dark:text-[#475569]">•</span>
-        <span class="text-amber-700 font-bold dark:text-[#f59e0b]" data-scramble="4 CUPOS ESTA SEMANA">4 CUPOS ESTA SEMANA</span>
+      <div class="flex items-center space-x-2 sm:space-x-3 text-right shrink-0">
+        <span class="hidden sm:inline text-slate-800 dark:text-[#f8fafc]">ESTADO: <span class="text-emerald-600 font-bold dark:text-[#10b981]" data-scramble="DISPONIBLE">DISPONIBLE</span></span>
+        <span class="hidden sm:inline text-slate-300 dark:text-[#475569]">•</span>
+        <span class="text-amber-700 font-bold whitespace-nowrap dark:text-[#f59e0b]" data-scramble="4 CUPOS ESTA SEMANA">4 CUPOS ESTA SEMANA</span>
       </div>
     </div>
   </div>
 
   <!-- Main Navigation Bar -->
-  <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
-    <a href="#" class="group flex items-center space-x-3 text-decoration-none">
-      <div id="brand-badge-trigger" class="flex h-10 w-10 items-center justify-center rounded border border-slate-300 bg-slate-50 font-mono-tech font-bold text-slate-900 shadow-inner transition-transform group-hover:scale-105 active:scale-95 cursor-pointer dark:border-[#1d4ed8] dark:bg-[#0b1320] dark:text-[#f8fafc]">
-        <span class="text-xs text-amber-600 font-extrabold dark:text-[#d97706]">KD</span>
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-3 sm:px-6 py-2.5 sm:py-3 gap-2">
+    <a href="#" class="group flex items-center space-x-2 sm:space-x-3 text-decoration-none min-w-0">
+      <div id="brand-badge-trigger" class="flex h-8 w-8 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded border border-slate-300 bg-slate-50 font-mono-tech font-bold text-slate-900 shadow-inner transition-transform group-hover:scale-105 active:scale-95 cursor-pointer dark:border-[#1d4ed8] dark:bg-[#0b1320] dark:text-[#f8fafc]">
+        <span class="text-[11px] sm:text-xs text-amber-600 font-extrabold dark:text-[#d97706]">KD</span>
       </div>
-      <div>
-        <div class="flex items-center space-x-2">
-          <span class="font-bold tracking-tight text-slate-950 font-display text-lg dark:text-white">KESSOKU DEV</span>
-          <span class="rounded bg-blue-50 px-2 py-0.5 text-xs font-mono-tech font-semibold text-blue-700 border border-blue-200 dark:bg-[#1d4ed8]/20 dark:text-[#93c5fd] dark:border-[#1d4ed8]/40">CUCEA UDEG</span>
+      <div class="min-w-0">
+        <div class="flex items-center space-x-1.5 sm:space-x-2">
+          <span class="font-bold tracking-tight text-slate-950 font-display text-base sm:text-lg whitespace-nowrap dark:text-white">KESSOKU DEV</span>
+          <span class="rounded bg-blue-50 px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs font-mono-tech font-semibold text-blue-700 border border-blue-200 whitespace-nowrap dark:bg-[#1d4ed8]/20 dark:text-[#93c5fd] dark:border-[#1d4ed8]/40">CUCEA UDEG</span>
         </div>
-        <p class="text-xs font-mono-tech text-slate-500 dark:text-[#64748b]">DESARROLLO WEB & DIGITALIZACIÓN PARA PYMES</p>
+        <p class="hidden sm:block text-xs font-mono-tech text-slate-500 truncate dark:text-[#64748b]">DESARROLLO WEB & DIGITALIZACIÓN PARA PYMES</p>
       </div>
     </a>
 
     <!-- Nav Links in Clear Commercial Index Notation -->
-    <nav class="hidden md:flex items-center space-x-8 text-xs font-mono-tech text-slate-600 dark:text-[#94a3b8]">
+    <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 text-xs font-mono-tech text-slate-600 dark:text-[#94a3b8] shrink-0">
       <a href="#servicios" class="hover:text-slate-950 dark:hover:text-white transition-colors flex items-center space-x-1">
         <span class="text-amber-600 dark:text-[#d97706]">01/</span>
         <span>SERVICIOS</span>
@@ -61,16 +62,17 @@ import ThemeToggle from './ThemeToggle.astro';
     </nav>
 
     <!-- Header Action Controls & ThemeToggle -->
-    <div class="flex items-center space-x-3">
+    <div class="flex items-center space-x-1.5 sm:space-x-3 shrink-0">
       <!-- Conmutador de Modo Claro / Modo Oscuro -->
       <ThemeToggle />
 
       <a 
         href="#diagnostico" 
         data-magnetic-btn
-        class="inline-flex items-center justify-center rounded border border-amber-600/40 bg-amber-500/10 px-4 py-2 text-xs font-mono-tech font-bold text-amber-800 hover:bg-amber-600 hover:text-white transition-all active:translate-y-0.5 dark:border-[#d97706] dark:bg-[#d97706]/10 dark:text-[#f59e0b] dark:hover:bg-[#d97706] dark:hover:text-[#0b1320]"
+        class="inline-flex items-center justify-center rounded border border-amber-600/40 bg-amber-500/10 px-2.5 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-mono-tech font-bold text-amber-800 hover:bg-amber-600 hover:text-white transition-all active:translate-y-0.5 whitespace-nowrap dark:border-[#d97706] dark:bg-[#d97706]/10 dark:text-[#f59e0b] dark:hover:bg-[#d97706] dark:hover:text-[#0b1320]"
       >
-        <span class="mr-1.5 magnetic-icon">⚡</span> DIAGNÓSTICO $0
+        <span class="mr-1 magnetic-icon">⚡</span>
+        <span class="hidden xs:inline">DIAGNÓSTICO </span>$0
       </a>
     </div>
   </div>
